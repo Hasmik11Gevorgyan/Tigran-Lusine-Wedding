@@ -2,16 +2,9 @@
 <html lang="hy">
 <head>
 <!--
-  ✦ ՏԻՐԱՆ & ԼՈՒՍԻԵ — ՀԱՐՍԱՆԿԱՆ ՀՐԱՎԵ ✦
-  ─────────────────────────────────────────────
-  ՆԿԱՐՆԵՐԸ (գտնվում են index.html-ի կողքին, պահոցում առկա անուններով)․
-    heart.jpg                ← ծաղկե սիրտը (բացման էկրան)
-    hero.jpg                 ← hero ֆոն (ամբողջությամբ երևում է)
-    bride-house.jpg          ← 12:00 Հարսի տուն
-    khor-virap.jpg           ← 15:00 Խոր Վիրապ
-    florence-restaurant.jpg  ← 17:00 Ֆլորենս ռեստորան
-    galery1.jpg, galery2.jpg, galery-3.jpg, galery-4.jpg, 5.jpg, hero-florence.jpg.png ← պատկերասրահ
-  Փոխելու համար՝ CONFIG բլոկը <script>-ի սկզբում։
+  ✦ ՏԳՐԱՆ & ԼՈՒՍԻԵ — ՀԱՐՍԱՆԵԿԱՆ ՀՐԱՎԵ ✦
+  կարները․ կայքն իՆՔՆ է գտնում ճիշտ ֆայլը՝ փորձելով անունների բոլոր
+  տարբերակները (CONFIG-ի ցանկերը)։ Բավական է ֆայլերը լինեն index.html-ի կողքին։
 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,7 +32,6 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;o
  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.045'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)'/%3E%3C/svg%3E");}
 ::selection{background:var(--blush2);color:var(--rosed)}
 
-/* ============ SHARED ============ */
 .sec{padding:110px 24px;position:relative}
 .wrap{max-width:1120px;margin:0 auto;position:relative}
 .eyebrow{font-size:11px;letter-spacing:.42em;color:var(--gold);text-transform:uppercase;font-weight:500}
@@ -54,7 +46,6 @@ h2{font-weight:300;font-size:clamp(30px,4.6vw,46px);color:var(--ink);margin:12px
 .reveal{opacity:0;transform:translateY(32px);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.3,1)}
 .reveal.in{opacity:1;transform:none}
 
-/* ============ LANGUAGE SWITCHER ============ */
 #lang{position:fixed;top:16px;right:18px;z-index:9600;display:flex;gap:4px;
  background:rgba(251,246,236,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
  border:1px solid var(--goldfaint);padding:6px 8px}
@@ -62,7 +53,6 @@ h2{font-weight:300;font-size:clamp(30px,4.6vw,46px);color:var(--ink);margin:12px
  color:var(--inksoft);cursor:pointer;padding:4px 7px;transition:color .3s}
 #lang button.on{color:var(--rosed);box-shadow:inset 0 -1px 0 var(--gold)}
 
-/* ============ MUSIC BUTTON ============ */
 #musicBtn{position:fixed;right:18px;bottom:18px;z-index:9600;width:48px;height:48px;border-radius:50%;
  border:1px solid var(--goldsoft);background:rgba(251,246,236,.88);backdrop-filter:blur(8px);
  -webkit-backdrop-filter:blur(8px);display:grid;place-items:center;cursor:pointer;color:var(--rosed);
@@ -76,7 +66,6 @@ body.opened #musicBtn{opacity:1;pointer-events:auto}
 #musicBtn:not(.off) svg{animation:mpulse 2.6s ease-in-out infinite}
 @keyframes mpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
 
-/* ============ GATE (opening) ============ */
 .gate{position:fixed;inset:0;z-index:9000;display:flex;flex-direction:column;align-items:center;justify-content:center;
  background:radial-gradient(circle at 50% 40%,#fcf3ec 0%,var(--ivory) 68%);transition:opacity 1s ease,transform 1s ease;cursor:pointer;touch-action:manipulation}
 .gate.hide{opacity:0;transform:scale(1.04);pointer-events:none}
@@ -104,7 +93,6 @@ body.opened #musicBtn{opacity:1;pointer-events:auto}
 .gate-hint{font-size:12px;letter-spacing:.28em;color:var(--inksoft);text-indent:.28em;transition:opacity .5s;animation:hint 2.8s ease-in-out infinite;text-align:center;padding:0 16px}
 @keyframes hint{0%,100%{opacity:.55}50%{opacity:1}}
 
-/* ============ HERO ============ */
 .hero{min-height:100svh;position:relative;display:grid;place-items:center;overflow:hidden}
 .hero-bg{position:absolute;inset:0;background-size:contain;background-position:center;background-repeat:no-repeat;
  background-image:radial-gradient(circle at 12% 8%,rgba(244,220,214,.9),transparent 42%),radial-gradient(circle at 88% 92%,rgba(244,220,214,.9),transparent 42%),linear-gradient(#faf6ee,#f3ecdd);
@@ -131,14 +119,12 @@ body.opened .scroll-cue{opacity:.85}
 .amb svg{width:100%;height:100%;display:block}
 @keyframes amb{0%{transform:translate3d(0,-8vh,0) rotate(0deg);opacity:0}10%{opacity:.5}85%{opacity:.35}100%{transform:translate3d(var(--dx),106vh,0) rotate(var(--rot));opacity:0}}
 
-/* ============ MESSAGE ============ */
 .sec-message{background:linear-gradient(180deg,var(--ivory),#f6ecdc 60%,var(--cream))}
 .msg-card{max-width:780px;margin:0 auto;background:var(--paper);border:1px solid var(--goldsoft);padding:78px 9% 58px;text-align:center;box-shadow:0 24px 60px rgba(75,55,40,.08)}
 .msg-card p{font-size:17.5px;line-height:2.2;color:var(--inksoft);max-width:56ch;margin:0 auto 20px}
 .msg-card .dear{font-size:21px;color:var(--ink);letter-spacing:.08em;margin-bottom:26px}
 #msgFlower{position:absolute;top:-52px;left:50%;transform:translateX(-50%);width:150px;height:104px;pointer-events:none}
 
-/* ============ DATE ============ */
 .sec-date{background:var(--cream)}
 .date-grid{display:grid;grid-template-columns:minmax(300px,440px) 1fr;gap:60px;align-items:center;max-width:1000px;margin:0 auto}
 @media(max-width:900px){.date-grid{grid-template-columns:1fr;gap:48px}}
@@ -164,7 +150,6 @@ body.opened .scroll-cue{opacity:.85}
 .cd-cell .lbl{font-size:10.5px;letter-spacing:.26em;color:var(--inksoft);margin-top:8px;text-transform:uppercase}
 .cd-addr{margin-top:30px;font-size:14px;color:var(--inksoft);letter-spacing:.1em}
 
-/* ============ SCHEDULE ============ */
 .sec-sched{background:linear-gradient(180deg,var(--cream),#f7ece4 55%,var(--ivory))}
 .timeline{position:relative;max-width:1020px;margin:0 auto}
 .timeline::before{content:"";position:absolute;left:50%;top:6px;bottom:6px;width:1px;background:linear-gradient(180deg,transparent,var(--gold) 6%,var(--gold) 94%,transparent)}
@@ -189,7 +174,6 @@ body.opened .scroll-cue{opacity:.85}
  .t-img{height:230px}
 }
 
-/* ============ RSVP ============ */
 .sec-rsvp{background:var(--ivory)}
 .rsvp-card{max-width:660px;margin:0 auto;background:var(--paper);border:1px solid var(--goldsoft);padding:60px 8% 50px;text-align:center;box-shadow:0 24px 60px rgba(75,55,40,.08)}
 .rsvp-label{font-size:11px;letter-spacing:.3em;color:var(--gold);margin:22px 0 12px;text-transform:uppercase}
@@ -214,7 +198,6 @@ body.opened .scroll-cue{opacity:.85}
 .rsvp-done{margin-top:24px;color:var(--rosed);font-size:15px;letter-spacing:.1em;line-height:2}
 .rsvp-err{margin-top:14px;color:#a4524a;font-size:13px;letter-spacing:.06em}
 
-/* ============ GALLERY ============ */
 .sec-gallery{background:linear-gradient(180deg,var(--ivory),var(--cream))}
 .gallery{columns:3 260px;column-gap:26px}
 .g-item{break-inside:avoid;margin:0 0 26px;background:#fffdf8;padding:12px 12px 16px;border:1px solid var(--goldfaint);box-shadow:0 12px 28px rgba(75,55,40,.12);transform:rotate(var(--tilt,0deg));transition:transform .5s ease,box-shadow .5s ease}
@@ -222,7 +205,6 @@ body.opened .scroll-cue{opacity:.85}
 .g-item img{width:100%;display:block;filter:saturate(.92) sepia(.05)}
 .g-cap{margin-top:12px;text-align:center;font-family:var(--f-lat);font-style:italic;font-size:15.5px;color:var(--inksoft);letter-spacing:.06em}
 
-/* ============ FOOTER ============ */
 footer{background:#3a2d23;color:#efe4d3;text-align:center;padding:76px 24px 64px;position:relative}
 footer::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,#b08d57,transparent)}
 .ft-mono{font-size:30px;letter-spacing:.22em;color:#e8cfa8}
@@ -254,7 +236,6 @@ footer::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;
   <button data-lang="en">ENG</button>
 </div>
 
-<!-- SECTION 1 · բացում · ձեր ծաղկե սիրտը -->
 <div class="gate" id="gate" role="button" tabindex="0" aria-label="Բացել հրավերը">
   <div class="gate-mono" data-i18n="mono">Տ <span>և</span> Լ</div>
   <div class="heart-wrap" id="heartWrap">
@@ -262,7 +243,7 @@ footer::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;
     <div class="half hr"><img id="heartR" src="" alt=""></div>
     <div id="burst"></div>
   </div>
-  <div class="gate-hint" data-i18n="hint">ՀՊՔ ԾԱՂԵ ՍՐՏԻՆ՝ ՀՐԱՎԵԸ ԲԱՑԵԼՈՒ ՀԱՄԱՐ</div>
+  <div class="gate-hint" data-i18n="hint">ՀՊՔ ԾԱՂԵ ՍՐՏԻՆ՝ ՀՐԱՎԵՐԸ ԲԱՑԵԼՈՒ ՀԱՄԱՐ</div>
 </div>
 
 <button id="musicBtn" class="off" aria-label="Երաժշտություն · Pachelbel Canon in D" title="Pachelbel · Canon in D">
@@ -275,7 +256,6 @@ footer::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;
 </button>
 
 <main>
-<!-- SECTION 2 · HERO -->
 <section class="hero" id="top">
   <div class="hero-bg" id="heroBg"></div>
   <div class="hero-veil"></div>
@@ -286,10 +266,9 @@ footer::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;
     <p class="invite-line" data-i18n="invite">հրավիրում ենք մեր հարսանեկան արարողությանը</p>
     <div class="orn"><span class="ln"></span><svg viewBox="0 0 64 22" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M2 11 C 12 3, 22 19, 30 11 M62 11 C 52 3, 42 19, 34 11"/><circle cx="32" cy="11" r="2.4" fill="currentColor" stroke="none"/><circle cx="27" cy="8" r="1.4" fill="currentColor" stroke="none"/><circle cx="37" cy="8" r="1.4" fill="currentColor" stroke="none"/></svg><span class="ln"></span></div>
   </div>
-  <a class="scroll-cue" href="#message" aria-label="↓"><svg viewBox="0 0 22 34" fill="none" stroke="#b08d57" stroke-width="1.4"><path d="M4 8 L11 15 L18 8 M4 18 L11 25 L18 8"/></svg></a>
+  <a class="scroll-cue" href="#message" aria-label="↓"><svg viewBox="0 0 22 34" fill="none" stroke="#b08d57" stroke-width="1.4"><path d="M4 8 L11 15 L18 8 M4 18 L11 25 L18 18"/></svg></a>
 </section>
 
-<!-- SECTION 3 · MESSAGE -->
 <section class="sec sec-message" id="message">
   <div class="wrap">
     <div class="msg-card frame reveal">
@@ -302,7 +281,6 @@ footer::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;
   </div>
 </section>
 
-<!-- SECTION 4 · DATE + COUNTDOWN -->
 <section class="sec sec-date" id="date">
   <div class="wrap">
     <div class="reveal" style="text-align:center;margin-bottom:64px">
@@ -326,13 +304,12 @@ footer::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;
           <div class="cd-cell"><div class="num" id="cdM">00</div><div class="lbl" data-i18n="cdM">Րոպե</div></div>
           <div class="cd-cell"><div class="num" id="cdS">00</div><div class="lbl" data-i18n="cdS">Վայրկյան</div></div>
         </div>
-        <div class="cd-addr" data-i18n="addr">Սուրբ պսակադրություն · Խոր իրապ · ամը 15:00</div>
+        <div class="cd-addr" data-i18n="addr">Սուրբ պսակադրություն · Խոր Վիրապ · ժամը 15:00</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SECTION 5 · SCHEDULE -->
 <section class="sec sec-sched" id="schedule">
   <div class="wrap">
     <div class="reveal" style="text-align:center;margin-bottom:70px">
@@ -344,7 +321,6 @@ footer::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;
   </div>
 </section>
 
-<!-- SECTION 6 · RSVP -->
 <section class="sec sec-rsvp" id="rsvp">
   <div class="wrap">
     <div class="reveal" style="text-align:center;margin-bottom:56px">
@@ -376,7 +352,6 @@ footer::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;
   </div>
 </section>
 
-<!-- SECTION 7 · GALLERY -->
 <section class="sec sec-gallery" id="gallery">
   <div class="wrap">
     <div class="reveal" style="text-align:center;margin-bottom:60px">
@@ -396,40 +371,35 @@ footer::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;
 </footer>
 
 <script>
-/* ═══════════ CONFIG ═══════════ */
+/* ═══════════ CONFIG · նկարների ԱՆՈՒՆՆԵՐԻ ՑԱՆԿ — կայքը ինքն է գտնում գոյություն ունեցողը ═══════════ */
 const CONFIG = {
   weddingDate:new Date(2026, 8, 7, 12, 0, 0),
   rsvpEmail:"tigran.lusine.wedding@gmail.com",
-  heartImage:"heart.jpg",
-  heroBackground:"hero.jpg",
+  heartImage:["heart.jpg","heart.jpg.png","1786082934.png","1786082962.png"],
+  heroBackground:["hero.jpg","hero.jpg.png","viber_image_2026-08-07_10-23-51-771.jpg","hero-florence.jpg.png"],
   schedule:[
-    { time:"12:00", image:"bride-house.jpg",
+    { time:"12:00", image:["bride-house.jpg","bride-house.jpg.png"],
       title:{hy:"Հարսի տուն",ru:"Дом невесты",en:"Bride’s Home"},
       note:{hy:"Ժերմ ընդունելություն և հարսի պատրաստություն՝ հարազատների շրջապատում",
             ru:"Тёплый приём и сборы невесты в кругу близких",
             en:"A warm welcome and the bride’s preparations among loved ones"} },
-    { time:"15:00", image:"khor-virap.jpg",
+    { time:"15:00", image:["khor-virap.jpg","khor-virap.jpg.png"],
       title:{hy:"Խոր Վիրապ եկեղեցի",ru:"Церковь Хор Вирап",en:"Khor Virap Church"},
-      note:{hy:"Սուրբ պսակադրության արարողություն",
-            ru:"Церемония святого венчания",
-            en:"The holy wedding ceremony"} },
-    { time:"17:00", image:"florence-restaurant.jpg",
+      note:{hy:"Սուրբ պսակադրության արարողություն",ru:"Церемония святого венчания",en:"The holy wedding ceremony"} },
+    { time:"17:00", image:["florence-restaurant.jpg","florence-restaurant.jpg.png","restaurant.jpg"],
       title:{hy:"Ֆլորենս ռեստորան",ru:"Ресторан «Флоренс»",en:"Florence Restaurant"},
-      note:{hy:"Հարսանեկան խնջույք և տոնակատարություն",
-            ru:"Свадебный банкет и торжество",
-            en:"Wedding banquet and celebration"} }
+      note:{hy:"Հարսանեկան խնջույք և տոնակատարություն",ru:"Свадебный банкет и торжество",en:"Wedding banquet and celebration"} }
   ],
   gallery:[
-    { src:"galery1.jpg", caption:{hy:"Մենք երկուսով",ru:"Мы вдвоём",en:"The two of us"} },
-    { src:"galery2.jpg", caption:{hy:"Մեր պահը",ru:"Наш момент",en:"Our moment"} },
-    { src:"galery-3.jpg", caption:{hy:"Սիրով լի",ru:"Полные любви",en:"Full of love"} },
-    { src:"galery-4.jpg", caption:{hy:"Երջանիկ պահեր",ru:"Счастливые моменты",en:"Happy moments"} },
-    { src:"5.jpg", caption:{hy:"Սիրո նամակներ",ru:"Письма любви",en:"Love letters"} },
-    { src:"hero-florence.jpg.png", caption:{hy:"Ֆլորենսիայի երազանքը",ru:"Флорентийская мечта",en:"A Florentine dream"} }
+    { src:["galery1.jpg","gallery1.jpg","gallery-1.jpg","galery1.jpg.png"], caption:{hy:"Մենք երկուսով",ru:"Мы вдвоём",en:"The two of us"} },
+    { src:["galery2.jpg","gallery2.jpg","gallery-2.jpg","galery2.jpg.png"], caption:{hy:"Մեր պահը",ru:"Наш момент",en:"Our moment"} },
+    { src:["galery-3.jpg","gallery-3.jpg","galery-3.jpg.png"], caption:{hy:"Սիրով լի",ru:"Полные любви",en:"Full of love"} },
+    { src:["galery-4.jpg","gallery-4.jpg","galery-4.jpg.png"], caption:{hy:"Երջանիկ պահեր",ru:"Счастливые моменты",en:"Happy moments"} },
+    { src:["5.jpg","5.jpg.png"], caption:{hy:"Սիրո նամակներ",ru:"Письма любви",en:"Love letters"} },
+    { src:["hero-florence.jpg.png","hero-florence.jpg","1786082962.png"], caption:{hy:"Ֆլորենսիայի երազանքը",ru:"Флорентийская мечта",en:"A Florentine dream"} }
   ]
 };
 
-/* ═══════════ I18N ═══════════ */
 const T={
  hy:{mono:'Տ <span>և</span> Լ',hint:'ՀՊՔ ԾԱՂԵ ՍՐՏԻՆ՝ ՀՐԱՎԵՐԸ ԲԱՑԵԼՈՒ ՀԱՄԱՐ',
   eyebrow:'Սեպտեմբերի 7 · 2026',names:'Տիգրան <em>և</em> Լուսինե',invite:'հրավիրում ենք մեր հարսանեկան արարողությանը',
@@ -500,7 +470,26 @@ const pick=a=>a[(Math.random()*a.length)|0];
 const REDUCED=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let LANG=(localStorage.getItem('wl-lang')||'hy');
 
-/* ---------- SVG decor builders ---------- */
+/* ---------- նկարների «խելացի» բեռնում․ փորձում է ցանկի բոլոր անունները ---------- */
+const FALLBACK="data:image/svg+xml,"+encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600'><rect width='800' height='600' fill='#f6e8df'/><g fill='#e9c4bc'><circle cx='400' cy='270' r='48'/><circle cx='350' cy='305' r='36'/><circle cx='450' cy='305' r='36'/><circle cx='400' cy='335' r='32'/></g><circle cx='400' cy='300' r='16' fill='#c99a58'/></svg>`);
+const HEART_FALLBACK="data:image/svg+xml,"+encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M50 88 C 20 62 6 44 6 28 C 6 14 17 6 28 6 C 37 6 45 11 50 20 C 55 11 63 6 72 6 C 83 6 94 14 94 28 C 94 44 80 62 50 88Z' fill='#e8b7b0'/></svg>`);
+function probe(list,ok){
+  let i=0;
+  (function next(){
+    if(i>=list.length)return ok(null);
+    const im=new Image();
+    im.onload=()=>ok(list[i]);
+    im.onerror=()=>{i++;next();};
+    im.src=list[i];
+  })();
+}
+function smartImg(el,list){
+  let i=0;
+  el.onerror=()=>{i++;if(i<list.length)el.src=list[i];else{el.onerror=null;el.src=FALLBACK;}};
+  el.src=list[0];
+}
+
+/* ---------- SVG decor ---------- */
 const PETAL=(l,w)=>`M0 0C${-w} ${-l*.32} ${-w*.9} ${-l*.92} 0 ${-l}C${w*.9} ${-l*.92} ${w} ${-l*.32} 0 0Z`;
 const svg=(inner,vb)=>`<svg viewBox="${vb}">${inner}</svg>`;
 function ringPetals(n,len,wid,off,fill){let s='';for(let i=0;i<n;i++){const a=(360/n)*i+off+rnd(-5,5),l=len*rnd(.92,1.08),w=wid*rnd(.92,1.08);
@@ -511,21 +500,21 @@ function innerLeaf(){return `<path d="M0 0 C -17 -14 -22 -44 0 -58 C 22 -44 17 -
 function innerGyp(){let d='';for(let i=0;i<7;i++){d+=`<circle cx="${rnd(-16,16).toFixed(1)}" cy="${rnd(-46,-8).toFixed(1)}" r="${rnd(1.8,3).toFixed(1)}" fill="#f7f1e2" stroke="#d9c9a8" stroke-width=".5"/>`;}
  return `<path d="M0 2 C -2 -12 2 -28 0 -44 M0 -18 C -8 -24 -12 -30 -14 -36 M0 -26 C 8 -32 12 -38 13 -42" stroke="#9aa88a" stroke-width="1.2" fill="none" opacity=".8"/>`+d;}
 
-/* ---------- MUSIC · Pachelbel — Canon in D (հանգիստ գործիքավորում) ---------- */
+/* ---------- MUSIC · Pachelbel Canon in D ---------- */
 const Music=(()=>{
  let ctx=null,master,delay,playing=false,timer=null,step=0;
- const BAR=4.8;                                   // մեկ տակտի տևողությունը (վրկ)
- const SEQ=[                                      // D–A–Bm–F#m–G–D–G–A
-  {b:73.42, t:[293.66,369.99,440.00]},            // D
-  {b:110.00,t:[277.18,329.63,440.00]},            // A
-  {b:123.47,t:[246.94,293.66,369.99]},            // Bm
-  {b:92.50, t:[277.18,369.99,440.00]},            // F#m
-  {b:98.00, t:[293.66,392.00,493.88]},            // G
-  {b:73.42, t:[293.66,369.99,440.00]},            // D
-  {b:98.00, t:[293.66,392.00,493.88]},            // G
-  {b:110.00,t:[277.18,329.63,440.00]}             // A
+ const BAR=4.8;
+ const SEQ=[
+  {b:73.42, t:[293.66,369.99,440.00]},
+  {b:110.00,t:[277.18,329.63,440.00]},
+  {b:123.47,t:[246.94,293.66,369.99]},
+  {b:92.50, t:[277.18,369.99,440.00]},
+  {b:98.00, t:[293.66,392.00,493.88]},
+  {b:73.42, t:[293.66,369.99,440.00]},
+  {b:98.00, t:[293.66,392.00,493.88]},
+  {b:110.00,t:[277.18,329.63,440.00]}
  ];
- const HOOK={                                     // կանոնի ճանաչելի մեղեդիի սկիզբը
+ const HOOK={
   0:[739.99,659.25,587.33,554.37,493.88,440.00,493.88,554.37],
   1:[587.33,554.37,493.88,440.00,415.30,369.99,415.30,440.00]
  };
@@ -550,11 +539,11 @@ const Music=(()=>{
  }
  function bar(i,t){
   const c=SEQ[i],eigh=BAR/8;
-  tone(c.b,t,BAR+1.4,.055,1.6);                   // բաս
-  tone(c.b*2,t,BAR,.018,1.2);                     // բասի օբերտոն
-  const pat=[0,1,2,1,0,1,2,1];                    // նուրբ արպեջիո
+  tone(c.b,t,BAR+1.4,.055,1.6);
+  tone(c.b*2,t,BAR,.018,1.2);
+  const pat=[0,1,2,1,0,1,2,1];
   for(let k=0;k<8;k++)tone(c.t[pat[k]]*(k===7?2:1),t+k*eigh,eigh*2.8,.03,.02,'triangle');
-  const m=HOOK[i];                                // մեղեդի (տակտ 1–2)
+  const m=HOOK[i];
   if(m)for(let k=0;k<8;k++)tone(m[k],t+k*eigh,eigh*3.6,.05,.015);
  }
  function loop(){
@@ -577,10 +566,12 @@ musicBtn.addEventListener('click',e=>{
  else{Music.start();musicBtn.classList.remove('off');}
 });
 
-/* ---------- SECTION 1 · heart opening ---------- */
+/* ---------- SECTION 1 · heart ---------- */
 const gate=$('#gate'),heartWrap=$('#heartWrap'),burst=$('#burst');
-$('#heartL').src=CONFIG.heartImage;
-$('#heartR').src=CONFIG.heartImage;
+probe(CONFIG.heartImage,src=>{
+  const s=src||HEART_FALLBACK;
+  $('#heartL').src=s;$('#heartR').src=s;
+});
 let opened=false;
 function burstPetals(){
  const w=burst.clientWidth||400,cx=w/2,cy=w/2;
@@ -616,17 +607,15 @@ function openGate(){
 gate.addEventListener('click',openGate);
 gate.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openGate();}});
 
-/* ---------- reveal on scroll ---------- */
 function startReveal(){
  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 }
 
-/* ---------- hero background + ambient petals ---------- */
+/* ---------- hero + ambient petals ---------- */
 (function(){
- const bg=$('#heroBg'),img=new Image();
- img.onload=()=>bg.style.backgroundImage=`url("${CONFIG.heroBackground}")`;
- img.src=CONFIG.heroBackground;
+ const bg=$('#heroBg');
+ probe(CONFIG.heroBackground,src=>{if(src)bg.style.backgroundImage=`url("${src}")`;});
  const cols=['#f3cfc8','#eec2bb','#f7ddd7','#e6aca4'];
  for(let i=0;i<9;i++){
   const p=document.createElement('i');p.className='amb';
@@ -638,7 +627,6 @@ function startReveal(){
  }
 })();
 
-/* ---------- message flower cluster ---------- */
 $('#msgFlower').innerHTML=svg(
  `<g transform="translate(-56,26) rotate(-42) scale(.6)">${innerLeaf()}</g>
   <g transform="translate(56,26) rotate(42) scale(.6)">${innerLeaf()}</g>
@@ -646,7 +634,7 @@ $('#msgFlower').innerHTML=svg(
   <g transform="translate(46,-4) scale(.55)">${innerGyp()}</g>
   <g transform="translate(0,6) scale(.85)">${innerPeony()}</g>`,'-100 -70 200 140');
 
-/* ---------- SECTION 4 · calendar + countdown ---------- */
+/* ---------- calendar + countdown ---------- */
 const WD=CONFIG.weddingDate;
 function renderCalendar(){
  const d=WD,y=d.getFullYear(),m=d.getMonth(),L=T[LANG];
@@ -677,9 +665,7 @@ function renderCalendar(){
  tick();setInterval(tick,1000);
 })();
 
-/* ---------- SECTION 5 · timeline ---------- */
-const FALLBACK="data:image/svg+xml,"+encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600'><rect width='800' height='600' fill='#f6e8df'/><g fill='#e9c4bc'><circle cx='400' cy='270' r='48'/><circle cx='350' cy='305' r='36'/><circle cx='450' cy='305' r='36'/><circle cx='400' cy='335' r='32'/></g><circle cx='400' cy='300' r='16' fill='#c99a58'/></svg>`);
-function guard(img){img.addEventListener('error',()=>{if(img.dataset.fb)return;img.dataset.fb=1;img.src=FALLBACK;});}
+/* ---------- timeline ---------- */
 function renderSchedule(){
  const box=$('#timeline');box.innerHTML='';
  CONFIG.schedule.forEach(ev=>{
@@ -687,15 +673,15 @@ function renderSchedule(){
    <div class="t-item reveal in">
      <div class="t-time"><span>${ev.time}</span></div>
      <div class="t-card">
-       <div class="t-img"><img src="${ev.image}" alt="${ev.title[LANG]}" loading="lazy"></div>
+       <div class="t-img"><img alt="${ev.title[LANG]}" loading="lazy"></div>
        <div class="t-body"><h3>${ev.title[LANG]}</h3><p>${ev.note[LANG]}</p></div>
      </div>
    </div>`);
+  smartImg(box.querySelector('.t-item:last-child img'),ev.image);
  });
- box.querySelectorAll('img').forEach(guard);
 }
 
-/* ---------- SECTION 6 · RSVP ---------- */
+/* ---------- RSVP ---------- */
 let guests=1;
 $('#plus').onclick=()=>{guests=Math.min(12,guests+1);$('#guestCount').textContent=guests;};
 $('#minus').onclick=()=>{guests=Math.max(1,guests-1);$('#guestCount').textContent=guests;};
@@ -712,17 +698,17 @@ $('#rsvpForm').addEventListener('submit',e=>{
  $('#rsvpDone').hidden=false;
 });
 
-/* ---------- SECTION 7 · gallery ---------- */
+/* ---------- gallery ---------- */
 function renderGallery(){
  const box=$('#galleryGrid');box.innerHTML='';
  CONFIG.gallery.forEach((g,i)=>{
   box.insertAdjacentHTML('beforeend',`
    <figure class="g-item reveal in" style="--tilt:${i%2?'1.3deg':'-1.5deg'}">
-     <img src="${g.src}" alt="${g.caption[LANG]}" loading="lazy">
+     <img alt="${g.caption[LANG]}" loading="lazy">
      <figcaption class="g-cap">${g.caption[LANG]}</figcaption>
    </figure>`);
+  smartImg(box.querySelector('.g-item:last-child img'),g.src);
  });
- box.querySelectorAll('img').forEach(guard);
 }
 
 /* ---------- language ---------- */

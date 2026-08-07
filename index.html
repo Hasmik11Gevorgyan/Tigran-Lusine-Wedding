@@ -18,7 +18,6 @@
   --gold:#b08d57; --goldsoft:rgba(176,141,87,.42); --goldfaint:rgba(176,141,87,.24);
   --f-disp:'Italiana',serif; --f-lat:'Cormorant Garamond',serif; --f-arm:'Noto Serif Armenian',serif;
 }
-/* ձևավոր/ձեռագիր ֆոնտեր ըստ լեզվի */
 html{--f-body:'Noto Serif Armenian',serif}
 html[lang=ru]{--f-body:'Marck Script','Noto Serif Armenian',cursive}
 html[lang=en]{--f-body:'Great Vibes','Cormorant Garamond',cursive}
@@ -35,7 +34,6 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;o
 
 .sec{padding:110px 24px;position:relative}
 .wrap{max-width:1120px;margin:0 auto;position:relative;z-index:1}
-/* սեքշնների բեքգրաունդ նկարը */
 .bgsec::before{content:"";position:absolute;inset:0;pointer-events:none;
  background-image:linear-gradient(rgba(250,246,238,.87),rgba(247,240,228,.8) 55%,rgba(250,246,238,.9)),var(--sbg,none);
  background-size:cover;background-position:center}
@@ -101,15 +99,29 @@ body.opened #musicBtn{opacity:1;pointer-events:auto}
 html[lang=ru] .gate-hint,html[lang=en] .gate-hint{letter-spacing:.1em;font-size:16px}
 @keyframes hint{0%,100%{opacity:.55}50%{opacity:1}}
 
-/* ============ HERO · ամբողջ էկրան, առանց քրոփի ============ */
+/* ============ HERO · նկարն ամբողջական + ծաղկային եզրեր ============ */
 .hero{min-height:100svh;position:relative;display:grid;place-items:center;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background-image:var(--heroUrl,none);background-size:contain;background-position:center;background-repeat:no-repeat;animation:kb 16s ease-out forwards}
-.hero-bg::before{content:"";position:absolute;inset:-20px;z-index:-1;background-image:var(--heroUrl,none);background-size:cover;background-position:center;filter:blur(28px) saturate(.85) brightness(1.03);transform:scale(1.12)}
-@keyframes kb{from{transform:scale(1.04)}to{transform:scale(1)}}
-.hero-veil{position:absolute;inset:0;background:linear-gradient(rgba(250,246,238,.22),rgba(250,246,238,.08) 45%,rgba(247,240,228,.6))}
-.hero-frame{position:absolute;inset:16px;border:1px solid var(--goldsoft);pointer-events:none}
+/* ծաղկային «հին թուղթ» բեքգրաունդ */
+.hero-bg{position:absolute;inset:0;
+ background-image:
+  radial-gradient(circle at 8% 6%,rgba(244,220,214,.85),transparent 40%),
+  radial-gradient(circle at 92% 94%,rgba(244,220,214,.85),transparent 40%),
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cg opacity='.5'%3E%3Cg transform='translate(60,60)'%3E%3Ccircle r='16' fill='%23f2d7d0'/%3E%3Ccircle r='10' fill='%23e9c2ba'/%3E%3Ccircle r='5' fill='%23d9a29a'/%3E%3Ccircle r='2' fill='%23c99a58'/%3E%3C/g%3E%3Cg transform='translate(180,150)'%3E%3Ccircle r='13' fill='%23f2d7d0'/%3E%3Ccircle r='8' fill='%23e9c2ba'/%3E%3Ccircle r='4' fill='%23d9a29a'/%3E%3C/g%3E%3Cpath d='M150 40 C 158 32 166 32 172 40 C 166 48 158 48 150 40Z' fill='%23cfd8c2'/%3E%3Cpath d='M40 170 C 48 162 56 162 62 170 C 56 178 48 178 40 170Z' fill='%23cfd8c2'/%3E%3Cpath d='M110 120 c 6 -10 14 -10 18 0 c -4 10 -14 10 -18 0Z' fill='%23f4dcd6'/%3E%3Cpath d='M20 100 c 5 -8 12 -8 15 0 c -3 8 -12 8 -15 0Z' fill='%23f4dcd6'/%3E%3Cpath d='M200 70 c 5 -8 12 -8 15 0 c -3 8 -12 8 -15 0Z' fill='%23eec9c2'/%3E%3Ccircle cx='120' cy='200' r='2.5' fill='%23d9a29a'/%3E%3Ccircle cx='30' cy='30' r='2' fill='%23d9a29a'/%3E%3Ccircle cx='210' cy='210' r='2' fill='%23d9a29a'/%3E%3C/g%3E%3C/svg%3E"),
+  linear-gradient(#faf6ee,#f3ecdd);
+ background-size:auto,auto,240px 240px,auto;}
+/* ձեր նկարը՝ ամբողջական, ոսկե ռամկայով */
+.hero-photo{position:absolute;inset:0;display:grid;place-items:center;z-index:1;padding:5svh 3vw}
+.hero-photo img{max-width:min(94%,1000px);max-height:86svh;width:auto;height:auto;object-fit:contain;border-radius:2px;
+ box-shadow:0 0 0 1px rgba(176,141,87,.55),0 0 0 12px rgba(251,246,236,.9),0 0 0 13px rgba(176,141,87,.35),0 30px 70px rgba(75,55,40,.28)}
+.hero-veil{position:absolute;inset:0;z-index:2;background:linear-gradient(rgba(250,246,238,.14),rgba(250,246,238,.05) 45%,rgba(247,240,228,.38))}
+/* ջրաներկ ծաղիկներ եզրերին */
+.hero-garland{position:absolute;inset:0;z-index:3;pointer-events:none}
+.gf{position:absolute;transform:translate(-50%,-50%) rotate(var(--r,0deg))}
+.gf svg{width:100%;height:100%;display:block;filter:drop-shadow(0 6px 14px rgba(75,55,40,.12))}
+@media(max-width:640px){.hero-garland .gf{opacity:.6}}
+.hero-frame{position:absolute;inset:16px;border:1px solid var(--goldsoft);pointer-events:none;z-index:4}
 .hero-frame::after{content:"";position:absolute;inset:6px;border:1px solid var(--goldfaint)}
-.hero-content{text-align:center;padding:70px 26px;position:relative;z-index:2;max-width:900px;
+.hero-content{text-align:center;padding:70px 26px;position:relative;z-index:5;max-width:900px;
  text-shadow:0 2px 26px rgba(250,246,238,.95),0 0 10px rgba(250,246,238,.7)}
 .hero-content>*{opacity:0;transform:translateY(26px);transition:opacity 1.1s ease,transform 1.1s cubic-bezier(.2,.7,.3,1)}
 body.opened .hero-content>*{opacity:1;transform:none}
@@ -121,11 +133,11 @@ body.opened .hero-content>*:nth-child(4){transition-delay:.75s}
 .names em{padding:0 .16em}
 .invite-line{font-size:clamp(16px,2.3vw,21px);letter-spacing:.12em;color:var(--inksoft);line-height:2}
 html[lang=ru] .invite-line,html[lang=en] .invite-line{font-size:23px;letter-spacing:.06em}
-.scroll-cue{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:3;opacity:0;transition:opacity 1s ease 1.4s}
+.scroll-cue{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:5;opacity:0;transition:opacity 1s ease 1.4s}
 body.opened .scroll-cue{opacity:.85}
 .scroll-cue svg{width:22px;height:34px;animation:cue 2.2s ease-in-out infinite}
 @keyframes cue{0%,100%{transform:translateY(0);opacity:.9}50%{transform:translateY(8px);opacity:.4}}
-.amb{position:absolute;top:0;pointer-events:none;z-index:1;animation:amb var(--dur) linear var(--del) infinite;opacity:0}
+.amb{position:absolute;top:0;pointer-events:none;z-index:3;animation:amb var(--dur) linear var(--del) infinite;opacity:0}
 .amb svg{width:100%;height:100%;display:block}
 @keyframes amb{0%{transform:translate3d(0,-8vh,0) rotate(0deg);opacity:0}10%{opacity:.5}85%{opacity:.35}100%{transform:translate3d(var(--dx),106vh,0) rotate(var(--rot));opacity:0}}
 
@@ -163,7 +175,7 @@ html[lang=ru] .msg-card p,html[lang=en] .msg-card p{font-size:21px;line-height:1
 .cd-cell .lbl{font-size:12px;letter-spacing:.2em;color:var(--inksoft);margin-top:8px}
 .cd-addr{margin-top:30px;font-size:15px;color:var(--inksoft);letter-spacing:.08em}
 
-/* ============ SCHEDULE · ռետրո բացիկներ ============ */
+/* ============ SCHEDULE ============ */
 .sec-sched{background:linear-gradient(180deg,var(--cream),#f7ece4 55%,var(--ivory))}
 .pc-list{max-width:840px;margin:0 auto;display:flex;flex-direction:column;gap:70px}
 .postcard{position:relative;background:#fffdf6;border:1px solid var(--goldsoft);box-shadow:0 22px 48px rgba(75,55,40,.18);
@@ -209,7 +221,7 @@ html[lang=ru] .btn-gold,html[lang=en] .btn-gold{text-transform:none;font-size:18
 .rsvp-done{margin-top:24px;color:var(--rosed);font-size:16px;letter-spacing:.08em;line-height:2}
 .rsvp-err{margin-top:14px;color:#a4524a;font-size:14px}
 
-/* ============ GALLERY · ոսկե ռամկաներ ============ */
+/* ============ GALLERY ============ */
 .sec-gallery{background:linear-gradient(180deg,var(--ivory),var(--cream))}
 .gallery{columns:3 260px;column-gap:30px}
 .g-item{break-inside:avoid;margin:0 0 34px;background:#fffdf8;padding:14px 14px 18px;border:1px solid var(--goldfaint);
@@ -229,7 +241,6 @@ footer::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;
 
 @media (prefers-reduced-motion: reduce){
  .heart-wrap,.heart-wrap::after,.gate-hint,.amb,.scroll-cue svg,#musicBtn:not(.off) svg{animation:none!important}
- .hero-bg{animation:none}
 }
 </style>
 </head>
@@ -258,7 +269,7 @@ footer::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;
     <div class="half hr"><img id="heartR" src="" alt=""></div>
     <div id="burst"></div>
   </div>
-  <div class="gate-hint" data-i18n="hint">ՀՊԵՔ ՝ ՀՐԱՎԵՐԸ ԲԱՑԵԼՈՒ ՀԱՄԱՐ</div>
+  <div class="gate-hint" data-i18n="hint">ՀՊՔ ԾԱՂԿԵ ՐՏԻՆ՝ ՀՐԱՎԵՐԸ ԲԱՑԼՈՒ ՀԱՄԱՐ</div>
 </div>
 
 <button id="musicBtn" class="off" aria-label="Երաժշտություն · Pachelbel Canon in D" title="Pachelbel · Canon in D">
@@ -272,8 +283,10 @@ footer::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;
 
 <main>
 <section class="hero" id="top">
-  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-bg"></div>
+  <div class="hero-photo" id="heroPhoto"><img id="heroImg" alt=""></div>
   <div class="hero-veil"></div>
+  <div class="hero-garland" id="heroGarland"></div>
   <div class="hero-frame"></div>
   <div class="hero-content">
     <div class="eyebrow" data-i18n="eyebrow">Սեպտեմբերի 7 · 2026</div>
@@ -382,7 +395,7 @@ footer::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;
 <footer>
   <div class="ft-mono" data-i18n="ftMono">Տ <span>և</span> Լ</div>
   <div class="ft-date">07 · 09 · 2026</div>
-  <div class="ft-line" data-i18n="ftLine">Սիրով՝ Տիգրան և Լուսինե</div>
+  <div class="ft-line" data-i18n="ftLine">Սիրով Տիգրան և Լուսինե</div>
 </footer>
 
 <script>
@@ -405,7 +418,7 @@ const CONFIG = {
       note:{hy:"Ժերմ ընդունելություն և հարսի պատրաստություն՝ հարազատների շրջապատում",
             ru:"Тёплый приём и сборы невесты в кругу близких",
             en:"A warm welcome and the bride’s preparations among loved ones"} },
-    { time:"15:00", image:["khorvirap.jpg","khorvirap.jpg.png"],
+    { time:"15:00", image:["khor-virap.jpg","khor-virap.jpg.png"],
       title:{hy:"Խոր Վիրապ եկեղեցի",ru:"Церковь Хор Вирап",en:"Khor Virap Church"},
       note:{hy:"Սուրբ պսակադրության արարողություն",ru:"Церемония святого венчания",en:"The holy wedding ceremony"} },
     { time:"17:00", image:["florence-restaurant.jpg","florence-restaurant.jpg.png","restaurant.jpg"],
@@ -439,7 +452,7 @@ const T={
   rsvpNote:'Ձեր պատասխանը կուղարկվի <b>{email}</b> էլ․ հասցեին',
   rsvpDone:'Շնորհակալություն ձեր պատասխանի համար։<br>Սիրով սպասում ենք հանդիպմանը 🌸',
   galEyebrow:'Մեր պատմությունը',galTitle:'Լուսանկարներ',
-  ftMono:'Տ <span>և</span> Լ',ftLine:'Սիրով՝ Տիգրան և Լուսինե',
+  ftMono:'Տ <span>և</span> Լ',ftLine:'Սիրով Տիգրան և Լուսինե',
   months:['Հունվար','Փետրվար','Մարտ','Ապրիլ','Մայիս','Հունիս','Հուլիս','Օգոստոս','Սեպտեմբեր','Հոկտեմբեր','Նոյեմբեր','Դեկտեմբեր'],
   weekShort:['Երկ','Երք','Չրք','Հնգ','Ուրբ','Շբթ','Կիր'],
   weekFull:['Կիրակի','Երկուշաբթի','Երեքշաբթի','Չորեքշաբթի','Հինգշաբթի','Ուրբաթ','Շաբաթ']},
@@ -492,7 +505,6 @@ const pick=a=>a[(Math.random()*a.length)|0];
 const REDUCED=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let LANG=(localStorage.getItem('wl-lang')||'hy');
 
-/* ---------- նկարների խելացի բեռնում ---------- */
 const FALLBACK="data:image/svg+xml,"+encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600'><rect width='800' height='600' fill='#f6e8df'/><g fill='#e9c4bc'><circle cx='400' cy='270' r='48'/><circle cx='350' cy='305' r='36'/><circle cx='450' cy='305' r='36'/><circle cx='400' cy='335' r='32'/></g><circle cx='400' cy='300' r='16' fill='#c99a58'/></svg>`);
 const HEART_FALLBACK="data:image/svg+xml,"+encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M50 88 C 20 62 6 44 6 28 C 6 14 17 6 28 6 C 37 6 45 11 50 20 C 55 11 63 6 72 6 C 83 6 94 14 94 28 C 94 44 80 62 50 88Z' fill='#e8b7b0'/></svg>`);
 function probe(list,ok){
@@ -524,6 +536,9 @@ function ringPetals(n,len,wid,off,fill){let s='';for(let i=0;i<n;i++){const a=(3
  s+=`<path d="${PETAL(l,w)}" transform="rotate(${a.toFixed(1)})" fill="${fill}" stroke="rgba(146,82,77,.14)" stroke-width="1"/>`;}return s;}
 function stamens(){let s='';for(let i=0;i<8;i++){const a=rnd(0,6.28),r=rnd(8,13);s+=`<circle cx="${(Math.cos(a)*r).toFixed(1)}" cy="${(Math.sin(a)*r).toFixed(1)}" r="1.6" fill="#b3763f" opacity=".8"/>`;}return s;}
 function innerPeony(){return ringPetals(9,56,27,rnd(0,40),'url(#gp1)')+ringPetals(8,45,23,rnd(0,40),'url(#gp2)')+ringPetals(6,34,18,rnd(0,40),'url(#gp1)')+ringPetals(5,24,13,rnd(0,40),'url(#gr1)')+`<circle r="8" fill="url(#gc)"/>`+stamens();}
+function spiralPath(R){let p=[];const st=64,tu=2.9;for(let i=0;i<=st;i++){const t=i/st*tu*Math.PI*2,r=R*i/st;p.push(`${(r*Math.cos(t)).toFixed(2)} ${(r*Math.sin(t)).toFixed(2)}`);}return 'M'+p.join(' L ');}
+function innerRose(){return ringPetals(8,54,30,rnd(0,40),'url(#gr1)')+ringPetals(7,42,25,rnd(0,40),'url(#gr2)')+ringPetals(6,30,19,rnd(0,40),'url(#gr2)')+`<path d="${spiralPath(17)}" fill="none" stroke="#96554f" stroke-width="2.6" stroke-linecap="round" opacity=".5"/>`;}
+function innerBud(){return `<path d="M0 8 C -16 -2 -18 -26 0 -34 C 18 -26 16 -2 0 8 Z" fill="url(#gr2)"/><path d="M0 8 C -10 -4 -8 -22 0 -30 C 8 -22 10 -4 0 8 Z" fill="url(#gp2)"/><path d="M-2 6 C -20 2 -26 18 -22 30 C -8 26 0 16 -2 6 Z" fill="url(#gl)"/><path d="M2 6 C 20 2 26 18 22 30 C 8 26 0 16 2 6 Z" fill="url(#gl)"/>`;}
 function innerLeaf(){return `<path d="M0 0 C -17 -14 -22 -44 0 -58 C 22 -44 17 -14 0 0 Z" fill="url(#gl)"/><path d="M0 -4 L0 -54" stroke="#6d7f5e" stroke-width="1.4" opacity=".5"/>`;}
 function innerGyp(){let d='';for(let i=0;i<7;i++){d+=`<circle cx="${rnd(-16,16).toFixed(1)}" cy="${rnd(-46,-8).toFixed(1)}" r="${rnd(1.8,3).toFixed(1)}" fill="#f7f1e2" stroke="#d9c9a8" stroke-width=".5"/>`;}
  return `<path d="M0 2 C -2 -12 2 -28 0 -44 M0 -18 C -8 -24 -12 -30 -14 -36 M0 -26 C 8 -32 12 -38 13 -42" stroke="#9aa88a" stroke-width="1.2" fill="none" opacity=".8"/>`+d;}
@@ -640,10 +655,29 @@ function startReveal(){
  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 }
 
-/* ---------- hero + ambient petals ---------- */
+/* ---------- HERO · նկարը ամբողջական + ծաղկային եզրեր ---------- */
 (function(){
- const bg=$('#heroBg');
- probe(CONFIG.heroBackground,src=>{if(src)bg.style.setProperty('--heroUrl',`url("${src}")`);});
+ probe(CONFIG.heroBackground,src=>{
+  if(src)$('#heroImg').src=src;
+  else $('#heroPhoto').style.display='none';
+ });
+ /* ջրաներկ ծաղիկներ եզրերին ու անկյուններում */
+ const g=$('#heroGarland');
+ const spots=[[6,10,24],[11,30,16],[5,55,18],[9,82,22],[94,12,22],[89,34,15],[95,60,18],[91,86,24],[28,6,14],[72,7,13],[33,94,14],[67,93,15]];
+ spots.forEach(s=>{
+  const [x,y,v]=s;
+  const t=Math.random();
+  const inner=t<.4?innerPeony():t<.75?innerRose():innerBud();
+  const el=document.createElement('div');el.className='gf';
+  el.style.cssText=`left:${x}%;top:${y}%;width:${v}vmin;height:${v}vmin;--r:${rnd(-40,40)}deg`;
+  el.innerHTML=svg(inner,'-62 -62 124 124');
+  g.appendChild(el);
+  const lf=document.createElement('div');lf.className='gf';
+  lf.style.cssText=`left:${x+rnd(-4,4)}%;top:${y+rnd(-6,6)}%;width:${v*.7}vmin;height:${v*.7}vmin;--r:${rnd(0,360)}deg;opacity:.85`;
+  lf.innerHTML=svg(innerLeaf(),'-30 -62 60 66');
+  g.appendChild(lf);
+ });
+ /* թափվող թերթիկներ */
  const cols=['#f3cfc8','#eec2bb','#f7ddd7','#e6aca4'];
  for(let i=0;i<9;i++){
   const p=document.createElement('i');p.className='amb';
@@ -693,7 +727,7 @@ function renderCalendar(){
  tick();setInterval(tick,1000);
 })();
 
-/* ---------- schedule · ռետրո բացիկներ ---------- */
+/* ---------- schedule ---------- */
 function renderSchedule(){
  const box=$('#timeline');box.innerHTML='';const L=T[LANG];
  CONFIG.schedule.forEach((ev,i)=>{
@@ -723,12 +757,12 @@ $('#rsvpForm').addEventListener('submit',e=>{
  $('#rsvpErr').hidden=true;
  const sideTxt=side.value==='groom'?T[LANG].sideA:T[LANG].sideB;
  const subject=encodeURIComponent(`Հարսանիքի հաստատում — ${name}`);
- const body=encodeURIComponent(`Անուն, ազգանուն՝ ${name}\nԿողմ՝ ${sideTxt}\nՀյուրերի քանակ՝ ${guests}\n\nՍիրով սպասում ենք Ձեզ։`);
+ const body=encodeURIComponent(`Անուն, ազգանուն՝ ${name}\nԿողմ ${sideTxt}\nՀյուրերի քանակ՝ ${guests}\n\nՍիրով սպասում ենք Ձեզ։`);
  location.href=`mailto:${CONFIG.rsvpEmail}?subject=${subject}&body=${body}`;
  $('#rsvpDone').hidden=false;
 });
 
-/* ---------- gallery · ռամկաներ ---------- */
+/* ---------- gallery ---------- */
 function renderGallery(){
  const box=$('#galleryGrid');box.innerHTML='';
  CONFIG.gallery.forEach((g,i)=>{

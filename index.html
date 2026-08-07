@@ -169,3 +169,393 @@ margin-bottom:30px;color:var(--gold);text-shadow:2px 2px 4px rgba(0,0,0,0.5)}
 }
 </style>
 </head>
+<body>
+
+<!-- Particles -->
+<canvas id="particles-canvas"></canvas>
+
+<!-- Language Switcher -->
+<div class="lang-switcher">
+  <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+  <button class="lang-btn" onclick="setLanguage('ru')">RU</button>
+  <button class="lang-btn active" onclick="setLanguage('am')">AM</button>
+</div>
+
+<!-- Music Player -->
+<div class="music-player" onclick="toggleMusic()">
+  <div class="music-icon" id="musicIcon">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+      <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+    </svg>
+  </div>
+  <span class="music-text" id="musicText" data-i18n="music">Երաdelays</span>
+</div>
+
+<audio id="bgMusic" loop>
+  <source src="atlasaudio-love-522433.mp3" type="audio/mpeg">
+</audio>
+
+<!-- HEART OVERLAY -->
+<div id="heart-overlay">
+  <img src="heart.jpg" id="heartImg" alt="Ծաղկdelays սirt">
+  <p class="click-hint" data-i18n="touch_hint">Հպdelays delays</p>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="website-content">
+
+  <!-- HERO -->
+  <section class="hero" id="heroSection">
+    <button class="img-pick" onclick="document.getElementById('heroImg').click()" title="Փոխdelays նկdelays">📷</button>
+    <input type="file" id="heroImg" accept="image/*" hidden>
+    <div class="hero-content">
+      <div class="hero-subtitle" data-i18n="invite">Հրdelays delays</div>
+      <div class="hero-names"><span data-i18n="bride_name">Տdelays</span></div>
+      <div class="hero-ampersand">&</div>
+      <div class="hero-names"><span data-i18n="groom_name">Լdelays</span></div>
+      <div class="hero-date" data-i18n="wedding_date">07 · Սdelays · 2026</div>
+      <div class="countdown">
+        <div class="countdown-item"><span class="countdown-number" id="days">000</span><span class="countdown-label" data-i18n="days">Օdelays</span></div>
+        <div class="countdown-item"><span class="countdown-number" id="hours">00</span><span class="countdown-label" data-i18n="hours">Ժdelays</span></div>
+        <div class="countdown-item"><span class="countdown-number" id="minutes">00</span><span class="countdown-label" data-i18n="minutes">Րdelays</span></div>
+        <div class="countdown-item"><span class="countdown-number" id="seconds">00</span><span class="countdown-label" data-i18n="seconds">Վdelays</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="ceremony-section" id="timelineSection">
+    <button class="img-pick" onclick="document.getElementById('timelineImg').click()" title="Փdelays delays նկdelays">📷</button>
+    <input type="file" id="timelineImg" accept="image/*" hidden>
+    <div class="section">
+      <h2 class="section-title fade-in" data-i18n="ceremony_title">Օdelays delays</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-time">12:00</div>
+            <div class="timeline-title" data-i18n="bride_house">Հdelays delays</div>
+            <div class="timeline-location" data-i18n="bride_house_loc">Պdelays delays</div>
+          </div>
+          <div class="timeline-dot">👰</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-time">15:00</div>
+            <div class="timeline-title" data-i18n="church">Խdelays delays delays</div>
+            <div class="timeline-location" data-i18n="church_loc">Սdelays delays</div>
+          </div>
+          <div class="timeline-dot">⛪</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-time">17:00</div>
+            <div class="timeline-title" data-i18n="restaurant">Ֆdelays delays</div>
+            <div class="timeline-location" data-i18n="restaurant_loc">Delays delays delays</div>
+          </div>
+          <div class="timeline-dot">🥂</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery-section" id="gallerySection">
+    <button class="img-pick" onclick="document.getElementById('galleryBgImg').click()" title="Փdelays delays delays նկdelays">📷</button>
+    <input type="file" id="galleryBgImg" accept="image/*" hidden>
+    <div class="section">
+      <h2 class="section-title fade-in" data-i18n="gallery_title">Մdelays delays delays</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item fade-in" style="position:relative">
+          <button class="img-pick" onclick="document.getElementById('gal1').click()">📷</button>
+          <input type="file" id="gal1" accept="image/*" hidden>
+          <div class="gallery-overlay"><div class="gallery-text" data-i18n="gallery_1">Մdelays delays</div></div>
+        </div>
+        <div class="gallery-item fade-in" style="position:relative">
+          <button class="img-pick" onclick="document.getElementById('gal2').click()">📷</button>
+          <input type="file" id="gal2" accept="image/*" hidden>
+          <div class="gallery-overlay"><div class="gallery-text" data-i18n="gallery_2">Մdelays delays</div></div>
+        </div>
+        <div class="gallery-item fade-in" style="position:relative">
+          <button class="img-pick" onclick="document.getElementById('gal3').click()">📷</button>
+          <input type="file" id="gal3" accept="image/*" hidden>
+          <div class="gallery-overlay"><div class="gallery-text" data-i18n="gallery_3">Գdelays delays</div></div>
+        </div>
+        <div class="gallery-item fade-in" style="position:relative">
+          <button class="img-pick" onclick="document.getElementById('gal4').click()">📷</button>
+          <input type="file" id="gal4" accept="image/*" hidden>
+          <div class="gallery-overlay"><div class="gallery-text" data-i18n="gallery_4">Սdelays delays</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="rsvp-section" id="rsvpSection">
+    <button class="img-pick" onclick="document.getElementById('rsvpImg').click()" title="Փdelays delays delays delays նկdelays">📷</button>
+    <input type="file" id="rsvpImg" accept="image/*" hidden>
+    <div class="section">
+      <h2 class="section-title fade-in" style="color:white" data-i18n="rsvp_title">RSVP</h2>
+      <form class="rsvp-form fade-in" id="rsvpForm">
+        <div class="form-group">
+          <label data-i18n="side">Ոdelays delays delays delays delays</label>
+          <select required>
+            <option value="Փdelays delays" data-i18n="groom_side">Փdelays delays delays</option>
+            <option value="Հdelays delays" data-i18n="bride-side">Հdelays delays delays</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label data-i18n="name">Delays delays delays</label>
+          <input type="text" required data-i18n-placeholder="name_ph" placeholder="Delays delays">
+        </div>
+        <div class="form-group">
+          <label data-i18n="guests">Հdelays delays delays</label>
+          <select required>
+            <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+            <option value="4">4</option><option value="5">5+</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label data-i18n="message">Հdelays delays</label>
+          <textarea data-i18n-placeholder="message_ph" placeholder="Delays delays delays..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn" data-i18n="submit">ՈՒdelays delays</button>
+        <p id="rsvpMsg" style="color:var(--gold);margin-top:20px;text-align:center;font-size:1.1rem"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- THANK YOU -->
+  <section class="thank-you" id="thankYouSection">
+    <button class="img-pick" onclick="document.getElementById('thanksImg').click()" title="Փdelays delays delays delays նկdelays">📷</button>
+    <input type="file" id="thanksImg" accept="image/*" hidden>
+    <div class="thank-you-content fade-in">
+      <div class="hearts">💕</div>
+      <h2 data-i18n="thank_you">Շdelays delays delays</h2>
+      <p data-i18n="thank_you_text">Delays delays delays delays delays delays delays.</p>
+      <div class="couple-names-final">
+        <span data-i18n="bride_name">Տdelays</span> & <span data-i18n="groom_name">Լdelays</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+/* ⚠️ Փdelays delays delays delays delays delays delays delays delays delays */
+const RSVP_EMAIL = "your-email@example.com";
+
+/* --- TRANSLATIONS --- */
+const translations = {
+  am:{
+    music:"Երdelays delays",touch_hint:"Հdelays delays delays delays",invite:"Հdelays delays delays delays",
+    bride_name:"Տdelays",groom_name:"Լdelays",wedding_date:"07 · Delays delays · 2026",
+    days:"Օdelays",hours:"Ժdelays",minutes:"Delays delays",seconds:"Վdelays delays",
+    ceremony_title:"Օdelays delays delays",bride_house:"Հdelays delays",bride_house_loc:"Պdelays delays delays delays delays",
+    church:"Խdelays delays delays delays",church_loc:"Սdelays delays delays delays",
+    restaurant:"Ֆdelays delays delays",restaurant_loc:"Delays delays, delays delays delays delays delays",
+    gallery_title:"Մdelays delays delays delays",gallery_1:"Մdelays delays delays",gallery_2:"Մdelays delays delays",
+    gallery_3:"Գdelays delays delays",gallery_4:"Սdelays delays delays",
+    rsvp_title:"RSVP",side:"Ոdelays delays delays delays delays",groom_side:"Փdelays delays delays delays",
+    "bride-side":"Հdelays delays delays delays",name:"Delays delays delays delays",name_ph:"Delays delays delays",
+    guests:"Հdelays delays delays delays",message:"Հdelays delays delays",message_ph:"Delays delays delays...",
+    submit:"ՈՒdelays delays",thank_you:"Շdelays delays delays delays",
+    thank_you_text:"Delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays delays.",
+    msg_ok:"Delays delays delays delays delays delays delays 💖"
+  },
+  en:{
+    music:"Music",touch_hint:"Touch to Open",invite:"You're Invited",
+    bride_name:"Tigran",groom_name:"Lusine",wedding_date:"07 · September · 2026",
+    days:"Days",hours:"Hours",minutes:"Minutes",seconds:"Seconds",
+    ceremony_title:"Wedding Day",bride_house:"Bride's House",bride_house_loc:"Getting ready & beautiful moments",
+    church:"Khor Virap Church",church_loc:"Sacred vows & blessings",
+    restaurant:"Florence Restaurant",restaurant_loc:"Dinner, dancing & endless celebration",
+    gallery_title:"Our Love Story",gallery_1:"Our Beginning",gallery_2:"Together Forever",
+    gallery_3:"Beautiful Moments",gallery_4:"Sacred Union",
+    rsvp_title:"RSVP",side:"Which side are you from?",groom_side:"Groom's side",
+    "bride-side":"Bride's side",name:"Full Name",name_ph:"Your Name",
+    guests:"Number of Guests",message:"Message",message_ph:"Your wishes...",
+    submit:"Send RSVP",thank_you:"Thank You",
+    thank_you_text:"Your presence is the greatest gift we could ask for. We can't wait to celebrate this special day with you.",
+    msg_ok:"Thank you! Your answer has been sent 💖"
+  },
+  ru:{
+    music:"Музыка",touch_hint:"Нажмите, чтобы открыть",invite:"Вы приглашены",
+    bride_name:"Тигран",groom_name:"Лусине",wedding_date:"07 · Сентябрь · 2026",
+    days:"Дней",hours:"Часов",minutes:"Минут",seconds:"Секунд",
+    ceremony_title:"Свадебный день",bride_house:"Дом невесты",bride_house_loc:"Подготовка и прекрасные моменты",
+    church:"Хор Вирап",church_loc:"Священные клятвы и благословение",
+    restaurant:"Ресторан Флоренс",restaurant_loc:"Ужин, танцы и бесконечное празднование",
+    gallery_title:"Наша история любви",gallery_1:"Наше начало",gallery_2:"Вместе навсегда",
+    gallery_3:"Прекрасные моменты",gallery_4:"Священный союз",
+    rsvp_title:"RSVP",side:"С какой вы стороны?",groom_side:"Сторона жениха",
+    "bride-side":"Сторона невесты",name:"Полное имя",name_ph:"Ваше имя",
+    guests:"Количество гостей",message:"Сообщение",message_ph:"Ваши пожелания...",
+    submit:"Отправить",thank_you:"Спасибо",
+    thank_you_text:"Ваше присутствие — самый большой подарок. Мы с нетерпением ждем праздника с вами.",
+    msg_ok:"Спасибо! Ваш ответ отправлен 💖"
+  }
+};
+
+let currentLang='am', isPlaying=false;
+const audio=document.getElementById('bgMusic'),musicIcon=document.getElementById('musicIcon'),
+      musicText=document.getElementById('musicText');
+
+function setLanguage(lang){
+  currentLang=lang;
+  document.documentElement.lang=lang;
+  document.querySelectorAll('.lang-btn').forEach(b=>{
+    b.classList.toggle('active', b.textContent.trim().toLowerCase()===lang);
+  });
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n');
+    if(translations[lang][k]){
+      if(el.tagName==='OPTION') el.textContent=translations[lang][k];
+      else el.innerHTML=translations[lang][k];
+    }
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
+    const k=el.getAttribute('data-i18n-placeholder');
+    if(translations[lang][k]) el.placeholder=translations[lang][k];
+  });
+}
+setLanguage('am');
+
+function toggleMusic(){
+  if(isPlaying){audio.pause();musicIcon.classList.remove('playing')}
+  else{audio.play().catch(()=>{});musicIcon.classList.add('playing')}
+  isPlaying=!isPlaying;
+}
+document.addEventListener('click',function init(){
+  if(!isPlaying){audio.volume=0.3;audio.play().then(()=>{isPlaying=true;musicIcon.classList.add('playing')}).catch(()=>{})}
+  document.removeEventListener('click',init);
+},{once:true});
+
+/* --- HEART OVERLAY + թdelays delays delays delays --- */
+const heartOv=document.getElementById('heart-overlay');
+heartOv.addEventListener('click',()=>{
+  heartOv.classList.add('open');
+  for(let i=0;i<80;i++){
+    const p=document.createElement('span');
+    p.className='sc-petal';
+    p.style.width=(10+Math.random()*18)+'px';
+    p.style.height=(8+Math.random()*14)+'px';
+    p.style.transform='translate(-50%,-50%)';
+    heartOv.appendChild(p);
+    const a=Math.random()*2*Math.PI, d=140+Math.random()*450;
+    setTimeout(()=>{
+      p.style.transform=`translate(-50%,-50%) translate(${Math.cos(a)*d}px,${Math.sin(a)*d+180}px) rotate(${(Math.random()-.5)*720}deg)`;
+      p.style.opacity='0';
+    },30);
+  }
+  setTimeout(()=>{
+    heartOv.classList.add('hidden');
+    document.getElementById('website-content').classList.add('visible');
+    window.scrollTo(0,0);
+  },1300);
+},{once:true});
+
+/* --- COUNTDOWN delays 07.09.2026 --- */
+function updateCountdown(){
+  const t=new Date('September 7, 2026 12:00:00').getTime();
+  const diff=t-Date.now();
+  if(diff<=0){['days','hours','minutes','seconds'].forEach(id=>document.getElementById(id).textContent='00');return}
+  document.getElementById('days').textContent=String(Math.floor(diff/864e5)).padStart(3,'0');
+  document.getElementById('hours').textContent=String(Math.floor(diff/36e5)%24).padStart(2,'0');
+  document.getElementById('minutes').textContent=String(Math.floor(diff/6e4)%60).padStart(2,'0');
+  document.getElementById('seconds').textContent=String(Math.floor(diff/1e3)%60).padStart(2,'0');
+}
+setInterval(updateCountdown,1000);updateCountdown();
+
+/* --- SCROLL ANIMATIONS --- */
+const obs=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:.1});
+document.querySelectorAll('.fade-in,.timeline-item').forEach(el=>obs.observe(el));
+
+/* --- PARTICLES --- */
+const canvas=document.getElementById('particles-canvas'),ctx=canvas.getContext('2d');
+let particles=[];
+function resizeCanvas(){canvas.width=innerWidth;canvas.height=innerHeight}
+addEventListener('resize',resizeCanvas);resizeCanvas();
+class P{constructor(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;
+this.s=Math.random()*3+1;this.vx=Math.random()-.5;this.vy=Math.random()-.5;this.o=Math.random()*.5+.1}
+update(){this.x+=this.vx;this.y+=this.vy;
+if(this.x>canvas.width)this.x=0;if(this.x<0)this.x=canvas.width;
+if(this.y>canvas.height)this.y=0;if(this.y<0)this.y=canvas.height}
+draw(){ctx.fillStyle=`rgba(212,175,55,${this.o})`;ctx.beginPath();ctx.arc(this.x,this.y,this.s,0,Math.PI*2);ctx.fill()}}
+for(let i=0;i<Math.min(innerWidth/10,100);i++)particles.push(new P());
+(function anim(){ctx.clearRect(0,0,canvas.width,canvas.height);
+particles.forEach(p=>{p.update();p.draw()});requestAnimationFrame(anim)})();
+
+/* --- Նdelays delays delays delays --- */
+function bindImgPicker(inputId, applyFn){
+  const inp=document.getElementById(inputId);
+  if(!inp)return;
+  inp.addEventListener('change',e=>{
+    const f=e.target.files[0]; if(!f)return;
+    const r=new FileReader();
+    r.onload=ev=>applyFn(ev.target.result);
+    r.readAsDataURL(f);
+  });
+}
+
+bindImgPicker('heroImg',url=>{
+  document.getElementById('heroSection').style.backgroundImage=
+    `linear-gradient(rgba(26,26,46,.4),rgba(26,26,46,.4)),url('${url}')`;
+});
+bindImgPicker('timelineImg',url=>{
+  document.getElementById('timelineSection').style.backgroundImage=
+    `linear-gradient(rgba(255,255,240,.95),rgba(255,255,240,.95)),url('${url}')`;
+});
+bindImgPicker('galleryBgImg',url=>{
+  document.getElementById('gallerySection').style.backgroundImage=
+    `linear-gradient(rgba(255,255,240,.9),rgba(255,255,240,.9)),url('${url}')`;
+});
+bindImgPicker('rsvpImg',url=>{
+  document.getElementById('rsvpSection').style.backgroundImage=
+    `linear-gradient(rgba(26,26,46,.8),rgba(26,26,46,.8)),url('${url}')`;
+});
+bindImgPicker('thanksImg',url=>{
+  document.getElementById('thankYouSection').style.backgroundImage=
+    `linear-gradient(rgba(26,26,46,.7),rgba(26,26,46,.7)),url('${url}')`;
+});
+['gal1','gal2','gal3','gal4'].forEach((id,idx)=>{
+  bindImgPicker(id,url=>{
+    const items=document.querySelectorAll('.gallery-item');
+    if(items[idx]) items[idx].style.backgroundImage=`url('${url}')`;
+    if(items[idx]) items[idx].style.backgroundSize='cover';
+    if(items[idx]) items[idx].style.backgroundPosition='center';
+  });
+});
+
+/* --- RSVP --- */
+document.getElementById('rsvpForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const form=e.target;
+  const data={
+    _subject:'💌 RSVP — Տdelays delays & Լdelays delays',
+    Delays:form.querySelectorAll('select')[0].value,
+    Delays_delays:form.querySelector('input[type=text]').value||'—',
+    'Հdelays delays':form.querySelectorAll('select')[1].value,
+    Հdelays:form.querySelector('textarea').value||'—'
+  };
+  const msg=document.getElementById('rsvpMsg');
+  try{
+    const res=await fetch('https://formsubmit.co/ajax/'+RSVP_EMAIL,{
+      method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify(data)});
+    if(!res.ok)throw 0;
+    msg.textContent=translations[currentLang].msg_ok;
+    form.reset();
+  }catch(err){
+    const body=encodeURIComponent(Object.entries(data).map(([k,v])=>`${k}: ${v}`).join('\n'));
+    location.href=`mailto:${RSVP_EMAIL}?subject=${encodeURIComponent('RSVP — Delays delays')}&body=${body}`;
+    msg.textContent=translations[currentLang].msg_ok;
+  }
+});
+
+/* --- Keyboard delays --- */
+document.addEventListener('keydown',e=>{
+  if((e.key==='Enter'||e.key===' ')&&!heartOv.classList.contains('hidden')) heartOv.click();
+});
+</script>
+</body>
+</html>

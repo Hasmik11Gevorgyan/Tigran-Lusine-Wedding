@@ -2,1054 +2,340 @@
 <html lang="hy">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Տ. &amp; Լ. — 07.09.2026</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='16' text-anchor='middle' fill='%23fff'%3E07%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Space+Mono:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+Armenian:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Austin & Eva — Հարսանիքի հրավեր</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Serif+Armenian:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #0a0a0a;
-  --bg-2: #141414;
-  --fg: #ffffff;
-  --fg-70: rgba(255,255,255,0.7);
-  --fg-40: rgba(255,255,255,0.4);
-  --fg-20: rgba(255,255,255,0.2);
-  --fg-10: rgba(255,255,255,0.1);
-  --fg-05: rgba(255,255,255,0.05);
-  --accent: #ffffff;
-  --line: rgba(255,255,255,0.12);
-  --sans: 'Inter', -apple-system, sans-serif;
-  --mono: 'Space Mono', 'Courier New', monospace;
-  --serif: 'Cormorant Garamond', serif;
+:root{
+  --burgundy:#6d1a36; --burgundy-dark:#4e0f26;
+  --cream:#f6efe3; --cream-2:#efe4d2;
+  --pink:#e79dbb; --text:#4a2230;
 }
-* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-html, body {
-  background: var(--bg);
-  color: var(--fg);
-  font-family: var(--sans);
-  font-weight: 300;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-img { max-width: 100%; display: block; }
-::selection { background: var(--fg); color: var(--bg); }
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Serif Armenian',serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+body:not(.ready){overflow:hidden}
 
-/* ─── Typography classes ─── */
-.mono { font-family: var(--mono); }
-.serif { font-family: var(--serif); }
-.up { text-transform: uppercase; }
-.low { text-transform: lowercase; }
+/* ---------- ԻՆՏՐՈ․ ծաղկե սիրտ ---------- */
+#intro{position:fixed;inset:0;background:var(--cream);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:34px;z-index:50;cursor:pointer;transition:opacity .6s}
+#intro.hide{opacity:0;pointer-events:none}
+#heart{position:relative;width:320px;height:300px;animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.06)}}
+.hp{position:absolute;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;
+  background:radial-gradient(circle at 30% 30%,#ffe1ec,#f286ab 55%,#e0649a);
+  box-shadow:0 2px 6px rgba(180,60,110,.25);transform:translate(-50%,-50%);will-change:transform,opacity}
+#heart.scatter .hp{transform:translate(var(--tx),var(--ty)) rotate(var(--r)) scale(.4);opacity:0;
+  transition:transform 1.4s cubic-bezier(.15,.6,.3,1) var(--d),opacity 1.1s ease var(--d)}
+.intro-hint{font-style:italic;color:var(--burgundy);letter-spacing:.06em;animation:hintFade 2s infinite}
+@keyframes hintFade{50%{opacity:.4}}
 
-/* ─── Grid background ─── */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image: 
-    linear-gradient(var(--fg-05) 1px, transparent 1px),
-    linear-gradient(90deg, var(--fg-05) 1px, transparent 1px);
-  background-size: 60px 60px;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.6;
-}
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.3;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.08'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
-}
+/* ---------- Թռչող թերթիկներ ---------- */
+#petals{position:fixed;inset:0;pointer-events:none;z-index:5;overflow:hidden}
+.fp{position:absolute;top:-6vh;border-radius:100% 0 100% 0;opacity:.8;
+  background:radial-gradient(circle at 30% 30%,#ffd9e6,#ef86ae);animation:fall linear forwards}
+@keyframes fall{to{transform:translate(var(--dx),112vh) rotate(660deg)}}
 
-main { position: relative; z-index: 2; }
+/* ---------- ԸՆԴՀԱՆՈՒՐ ---------- */
+#content{opacity:0;transition:opacity 1s .2s}
+body.ready #content{opacity:1}
+section{max-width:760px;margin:0 auto;padding:64px 20px;text-align:center}
+h1,h2{color:var(--burgundy)}
+h2{font-style:italic;font-weight:600;font-size:1.7rem;margin-bottom:14px}
+.arm{font-style:italic}
+.reveal{opacity:0;transform:translateY(26px);transition:all .9s ease}
+.reveal.visible{opacity:1;transform:none}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--burgundy);color:var(--cream);
+  border:none;padding:12px 26px;font-family:inherit;font-style:italic;letter-spacing:.12em;
+  cursor:pointer;text-decoration:none;transition:.3s;font-size:.95rem}
+.btn:hover{background:var(--burgundy-dark);transform:translateY(-2px)}
 
-/* ─── Fixed Meta Header ─── */
-.meta-header {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 28px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--fg-70);
-  background: linear-gradient(180deg, rgba(10,10,10,0.9) 0%, transparent 100%);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-}
-.meta-header .meta-item { display: flex; align-items: center; gap: 8px; }
-.meta-header .meta-dot { width: 6px; height: 6px; background: var(--fg); border-radius: 50%; animation: pulse 2s infinite; }
-@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+/* ---------- HERO ---------- */
+.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;gap:10px}
+.hero .pre{letter-spacing:.35em;font-size:.8rem;color:var(--burgundy)}
+.hero h1{font-family:'Great Vibes',cursive;font-size:clamp(3rem,10vw,5.5rem);font-weight:400}
+.hero .date{letter-spacing:.5em;color:var(--burgundy);font-size:1.05rem}
 
-/* ─── Top Right Controls ─── */
-.top-controls {
-  position: fixed;
-  top: 16px; right: 28px;
-  z-index: 101;
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
+/* ---------- ՆԱՄԱԿ ---------- */
+.letter{background:var(--burgundy);color:var(--cream);max-width:none;padding:70px 20px}
+.letter .inner{max-width:640px;margin:0 auto}
+.letter h2{color:var(--cream);font-family:'Great Vibes',cursive;font-size:2.4rem}
+.letter p{line-height:2;font-style:italic;opacity:.92}
 
-#lang {
-  display: flex;
-  gap: 4px;
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.1em;
-  border: 1px solid var(--line);
-  padding: 2px;
-}
-#lang button {
-  background: transparent;
-  border: none;
-  color: var(--fg-40);
-  cursor: pointer;
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.1em;
-  padding: 6px 8px;
-  transition: all 0.2s;
-  text-transform: uppercase;
-}
-#lang button.on { background: var(--fg); color: var(--bg); }
-#lang button:hover:not(.on) { color: var(--fg); }
+/* ---------- ԱՄՍԱՑՈՒՅՑ ---------- */
+.calendar{background:#fbf6ec;border:1px solid #e5d9c4;padding:26px 18px;max-width:430px;margin:22px auto 10px}
+.cal-title{font-family:'Great Vibes',cursive;font-size:2rem;color:var(--burgundy)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:16px;font-size:.9rem}
+.cal-grid .dow{font-size:.7rem;opacity:.6}
+.day{padding:8px 0}
+.day.special{position:relative;color:#fff;font-weight:700}
+.day.special::before{content:"♥";position:absolute;inset:0;display:flex;align-items:center;
+  justify-content:center;color:var(--burgundy);font-size:2rem;z-index:0;transform:translateY(-2px)}
+.day.special span{position:relative;z-index:1}
+.cal-caption{font-style:italic;color:var(--burgundy);margin-top:14px}
 
-#musicBtn {
-  width: 32px; height: 32px;
-  border: 1px solid var(--line);
-  background: transparent;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  color: var(--fg);
-  transition: all 0.2s;
-}
-#musicBtn:hover { background: var(--fg); color: var(--bg); }
-#musicBtn svg { width: 12px; height: 12px; }
-#musicBtn .slash { display: none; stroke: var(--fg); }
-#musicBtn.off .slash { display: block; }
+/* ---------- ՀԵՏՀԱՇՎԱՐԿ ---------- */
+.count{display:flex;gap:14px;justify-content:center;margin-top:34px;flex-wrap:wrap}
+.count .box{border:1px solid var(--burgundy);min-width:86px;padding:16px 8px;background:#fbf6ec}
+.count .num{font-size:1.7rem;color:var(--burgundy);font-family:'Cormorant Garamond',serif}
+.count .lbl{font-size:.72rem;font-style:italic;opacity:.7;margin-top:4px}
 
-/* ─── Sections ─── */
-.sec {
-  min-height: 100vh;
-  padding: 120px 28px 80px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.sec-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--fg-40);
-  margin-bottom: 60px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.sec-label::before {
-  content: "";
-  width: 24px;
-  height: 1px;
-  background: var(--fg-40);
-}
+/* ---------- ԾՐԱԳԻՐ ---------- */
+.program{background:var(--burgundy);color:var(--cream);max-width:none;padding:70px 20px}
+.program h2{color:var(--cream);font-family:'Great Vibes',cursive;font-size:2.3rem}
+.program .diamond{font-size:1.4rem;margin:8px 0 26px}
+.timeline{max-width:520px;margin:0 auto;text-align:left}
+.t-item{display:flex;gap:20px;padding:18px 0;border-left:1px solid rgba(246,239,227,.4);margin-left:6px;padding-left:24px;position:relative}
+.t-item::before{content:"";position:absolute;left:-4px;top:26px;width:7px;height:7px;background:var(--cream);border-radius:50%}
+.t-time{font-family:'Cormorant Garamond',serif;font-size:1.3rem;min-width:64px}
+.t-item h3{font-style:italic;font-weight:600;margin-bottom:4px}
+.t-item p{font-size:.88rem;font-style:italic;opacity:.85;line-height:1.7}
 
-/* ═══════ 1. HERO ═══════ */
-.hero {
-  padding: 0;
-  justify-content: flex-end;
-  align-items: stretch;
-}
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  width: 100%;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-.hero-left, .hero-right {
-  padding: 40px;
-  min-height: 40vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border-right: 1px solid var(--line);
-}
-.hero-left:last-child, .hero-right:last-child { border-right: none; }
+/* ---------- ՎԱՅՐԵՐ ---------- */
+.loc-card{background:#fbf6ec;border:1px solid #e5d9c4;max-width:430px;margin:26px auto 0;padding-bottom:26px}
+.loc-img{height:230px;display:flex;align-items:center;justify-content:center;font-size:3.4rem;
+  background:linear-gradient(135deg,#e9c8d4,#c98ba3)} /* ← փոխարինիր <img>-ով */
+.loc-card h3{font-style:italic;color:var(--burgundy);margin:18px 12px 6px;font-size:1.25rem}
+.loc-card .addr{font-size:.85rem;font-style:italic;opacity:.7;margin-bottom:16px}
 
-.hero-tag {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--fg-40);
-}
-.hero-names {
-  font-family: var(--serif);
-  font-weight: 300;
-  font-style: italic;
-  font-size: clamp(48px, 12vw, 140px);
-  line-height: 0.9;
-  letter-spacing: -0.02em;
-}
-.hero-names .amp {
-  font-size: 0.5em;
-  color: var(--fg-40);
-  padding: 0 0.15em;
-  vertical-align: middle;
-}
-.hero-date {
-  font-family: var(--mono);
-  font-size: clamp(14px, 2vw, 18px);
-  letter-spacing: 0.05em;
-  color: var(--fg-70);
-}
-.hero-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--fg-40);
-}
-.hero-scroll {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--fg-40);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-.hero-scroll::after {
-  content: "";
-  width: 1px;
-  height: 30px;
-  background: linear-gradient(180deg, var(--fg-40), transparent);
-  animation: scrollAnim 2s infinite;
-}
-@keyframes scrollAnim {
-  0% { transform: scaleY(0); transform-origin: top; }
-  50% { transform: scaleY(1); transform-origin: top; }
-  50.1% { transform-origin: bottom; }
-  100% { transform: scaleY(0); transform-origin: bottom; }
-}
+/* ---------- RSVP ---------- */
+.rsvp{background:var(--burgundy);color:var(--cream);max-width:none;padding:70px 20px}
+.rsvp h2{color:var(--cream)}
+.rsvp .sub{font-style:italic;opacity:.9;margin-bottom:30px}
+form{background:var(--cream);color:var(--text);max-width:480px;margin:0 auto;padding:30px 22px;text-align:left}
+form label{display:block;font-style:italic;color:var(--burgundy);margin:16px 0 6px;font-size:.95rem}
+form input,form textarea{width:100%;border:none;border-bottom:1px solid #c9b39a;background:transparent;
+  padding:8px 2px;font-family:inherit;font-size:.95rem;color:var(--text);outline:none}
+form input:focus,form textarea:focus{border-bottom-color:var(--burgundy)}
+.choices{display:flex;gap:10px;flex-wrap:wrap}
+.choice{flex:1;min-width:140px;border:1px solid var(--burgundy);background:transparent;color:var(--burgundy);
+  padding:10px;font-family:inherit;font-style:italic;font-size:.85rem;cursor:pointer;transition:.3s}
+.choice.active{background:var(--burgundy);color:var(--cream)}
+form .btn{width:100%;justify-content:center;margin-top:26px}
+.success{display:none;background:var(--cream);color:var(--burgundy);max-width:480px;margin:0 auto;
+  padding:44px 24px;font-style:italic;font-size:1.1rem;line-height:1.9}
 
-/* ═══════ 2. COUNTDOWN ═══════ */
-.countdown {
-  background: var(--bg);
-  align-items: flex-start;
-}
-.cd-display {
-  width: 100%;
-  max-width: 1000px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  margin-top: 40px;
-}
-.cd-block {
-  padding: 40px 20px;
-  border-right: 1px solid var(--line);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
-}
-.cd-block:last-child { border-right: none; }
-.cd-num {
-  font-family: var(--mono);
-  font-size: clamp(56px, 10vw, 120px);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.03em;
-  font-variant-numeric: tabular-nums;
-}
-.cd-lbl {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--fg-40);
-}
-.cd-title {
-  font-family: var(--serif);
-  font-style: italic;
-  font-weight: 300;
-  font-size: clamp(28px, 5vw, 48px);
-  color: var(--fg-70);
-  margin-top: 60px;
-  max-width: 600px;
-  line-height: 1.2;
-}
+/* ---------- ՊԱՏԿԵՐԱՍՐԱՀ ---------- */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:26px}
+.ph{aspect-ratio:3/4;background:linear-gradient(160deg,#e9c8d4,#b97e97);display:flex;align-items:center;
+  justify-content:center;color:#fff;font-size:2rem;box-shadow:0 8px 20px rgba(90,20,50,.18)} /* ← փոխարինիր <img>-ով */
 
-/* ═══════ 3. MESSAGE ═══════ */
-.message { background: var(--bg-2); }
-.msg-grid {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 80px;
-  width: 100%;
-  max-width: 1200px;
-}
-.msg-side {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--fg-40);
-  padding-top: 8px;
-  border-top: 1px solid var(--line);
-}
-.msg-content {
-  font-family: var(--serif);
-  font-weight: 300;
-  font-size: clamp(20px, 3vw, 32px);
-  line-height: 1.5;
-  letter-spacing: 0.005em;
-}
-.msg-content p { margin-bottom: 24px; }
-.msg-content .dear {
-  font-style: italic;
-  color: var(--fg-70);
-  font-size: 0.8em;
-  margin-bottom: 30px;
-  display: block;
-}
+/* ---------- ՖՒՏԵՐ ---------- */
+footer{background:var(--burgundy);color:var(--cream);text-align:center;padding:56px 20px}
+footer .fn{font-family:'Great Vibes',cursive;font-size:2.4rem}
+footer .fd{letter-spacing:.5em;margin:10px 0 18px;font-size:.9rem}
+footer .made{font-size:.7rem;letter-spacing:.25em;opacity:.7}
 
-/* ═══════ 4. LOCATIONS ═══════ */
-.locations { align-items: flex-start; }
-.loc-grid {
-  width: 100%;
-  max-width: 1200px;
-  border-top: 1px solid var(--line);
-}
-.loc-item {
-  display: grid;
-  grid-template-columns: 120px 1fr 2fr auto;
-  gap: 40px;
-  align-items: baseline;
-  padding: 40px 0;
-  border-bottom: 1px solid var(--line);
-  transition: background 0.3s;
-}
-.loc-item:hover { background: var(--fg-05); padding-left: 20px; padding-right: 20px; }
-.loc-time {
-  font-family: var(--mono);
-  font-size: clamp(24px, 3vw, 36px);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  font-variant-numeric: tabular-nums;
-}
-.loc-name {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: clamp(20px, 2.5vw, 28px);
-  font-weight: 400;
-}
-.loc-desc {
-  font-family: var(--sans);
-  font-size: 13px;
-  color: var(--fg-70);
-  letter-spacing: 0.02em;
-  line-height: 1.5;
-}
-.loc-idx {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  color: var(--fg-40);
-  text-transform: uppercase;
-}
-
-/* ═══════ 5. SCHEDULE ═══════ */
-.schedule { background: var(--bg-2); align-items: flex-start; }
-.sch-grid {
-  width: 100%;
-  max-width: 1200px;
-  border-top: 1px solid var(--line);
-}
-.sch-item {
-  display: grid;
-  grid-template-columns: 120px 1fr auto;
-  gap: 40px;
-  padding: 28px 0;
-  border-bottom: 1px solid var(--line);
-  align-items: center;
-  transition: all 0.3s;
-}
-.sch-item:hover { padding-left: 20px; padding-right: 20px; background: var(--fg-05); }
-.sch-time {
-  font-family: var(--mono);
-  font-size: 22px;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-}
-.sch-event {
-  font-family: var(--sans);
-  font-size: 14px;
-  letter-spacing: 0.05em;
-}
-.sch-idx {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--fg-40);
-  letter-spacing: 0.2em;
-}
-
-/* ═══════ 6. DETAILS ═══════ */
-.details { align-items: flex-start; }
-.det-grid {
-  width: 100%;
-  max-width: 1200px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-.det-block {
-  padding: 40px;
-  border-right: 1px solid var(--line);
-}
-.det-block:last-child { border-right: none; }
-.det-title {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--fg-40);
-  margin-bottom: 20px;
-}
-.det-text {
-  font-family: var(--sans);
-  font-size: 14px;
-  line-height: 1.8;
-  color: var(--fg-70);
-  letter-spacing: 0.02em;
-}
-.det-text p { margin-bottom: 16px; }
-.det-text p:last-child { margin-bottom: 0; }
-
-/* ═══════ 7. RSVP ═══════ */
-.rsvp { align-items: flex-start; background: var(--bg-2); }
-.rsvp-container {
-  width: 100%;
-  max-width: 600px;
-  margin-top: 40px;
-}
-.rsvp-deadline {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.15em;
-  color: var(--fg-70);
-  text-transform: uppercase;
-  margin-bottom: 40px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--line);
-}
-.rsvp-deadline b { color: var(--fg); font-weight: 700; }
-
-.rsvp-form {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-.rsvp-row {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.rsvp-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--fg-40);
-}
-.rsvp-input {
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--line);
-  padding: 12px 0;
-  font-family: var(--sans);
-  font-size: 16px;
-  font-weight: 300;
-  color: var(--fg);
-  letter-spacing: 0.02em;
-  outline: none;
-  transition: border-color 0.3s;
-}
-.rsvp-input:focus { border-bottom-color: var(--fg); }
-.rsvp-input::placeholder { color: var(--fg-20); }
-
-.rsvp-radios {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-.rsvp-radio {
-  position: relative;
-  border: 1px solid var(--line);
-  padding: 16px;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--fg-70);
-}
-.rsvp-radio:hover { border-color: var(--fg-40); }
-.rsvp-radio input { display: none; }
-.rsvp-radio .dot {
-  width: 12px; height: 12px;
-  border: 1px solid var(--fg-40);
-  border-radius: 50%;
-  position: relative;
-  transition: all 0.2s;
-}
-.rsvp-radio input:checked ~ .dot {
-  border-color: var(--fg);
-  background: var(--fg);
-}
-.rsvp-radio input:checked ~ span { color: var(--fg); }
-.rsvp-radio:has(input:checked) { border-color: var(--fg); background: var(--fg-05); }
-
-.rsvp-btn {
-  background: var(--fg);
-  color: var(--bg);
-  border: none;
-  padding: 20px 32px;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.2s;
-  margin-top: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-}
-.rsvp-btn:hover { background: var(--fg-70); }
-.rsvp-btn::after {
-  content: "→";
-  font-size: 16px;
-  transition: transform 0.2s;
-}
-.rsvp-btn:hover::after { transform: translateX(4px); }
-
-.rsvp-note {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--fg-40);
-  letter-spacing: 0.1em;
-  margin-top: 16px;
-  text-transform: uppercase;
-}
-.rsvp-done {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 28px;
-  color: var(--fg);
-  padding: 40px 0;
-  line-height: 1.4;
-}
-
-/* ─── Footer ─── */
-.footer {
-  padding: 60px 28px 40px;
-  min-height: auto;
-  border-top: 1px solid var(--line);
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--fg-40);
-}
-.footer-center {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 24px;
-  text-transform: none;
-  letter-spacing: 0;
-  color: var(--fg);
-}
-.footer-right { text-align: right; }
-
-/* ─── Animations ─── */
-.fade-up {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 1s cubic-bezier(0.2,0.8,0.2,1), transform 1s cubic-bezier(0.2,0.8,0.2,1);
-}
-.fade-up.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ─── Responsive ─── */
-@media (max-width: 768px) {
-  .sec { padding: 100px 20px 60px; }
-  .hero-grid { grid-template-columns: 1fr; }
-  .hero-left, .hero-right { border-right: none; border-bottom: 1px solid var(--line); padding: 30px 24px; }
-  .cd-display { grid-template-columns: repeat(4, 1fr); }
-  .cd-block { padding: 24px 12px; }
-  .cd-num { font-size: clamp(32px, 12vw, 56px); }
-  .msg-grid { grid-template-columns: 1fr; gap: 24px; }
-  .loc-item { grid-template-columns: 1fr; gap: 8px; padding: 28px 0; }
-  .loc-item:hover { padding-left: 0; padding-right: 0; }
-  .sch-item { grid-template-columns: 80px 1fr; gap: 20px; }
-  .sch-idx { display: none; }
-  .det-grid { grid-template-columns: 1fr; }
-  .det-block { border-right: none; border-bottom: 1px solid var(--line); padding: 28px 0; }
-  .det-block:last-child { border-bottom: none; }
-  .footer { grid-template-columns: 1fr; gap: 20px; text-align: center; }
-  .footer-right { text-align: center; }
-  .meta-header { padding: 14px 20px; font-size: 9px; }
-}
+#musicBtn{position:fixed;right:18px;bottom:18px;width:52px;height:52px;border-radius:50%;border:none;
+  background:var(--burgundy);color:#fff;font-size:1.2rem;cursor:pointer;z-index:40;box-shadow:0 6px 16px rgba(0,0,0,.25)}
 </style>
 </head>
 <body>
 
-<div class="meta-header">
-  <div class="meta-item">
-    <span class="meta-dot"></span>
-    <span data-i18n="metaStatus">հրավեր · ակտիվ</span>
-  </div>
-  <div class="meta-item" data-i18n="metaDate">07 / 09 / 2026</div>
+<!-- ԻՆՏՐՈ -->
+<div id="intro">
+  <div id="heart"></div>
+  <p class="intro-hint">հպեք՝ բացելու համար ✨</p>
 </div>
 
-<div class="top-controls">
-  <div id="lang" role="group">
-    <button data-lang="hy" class="on">ՀԱՅ</button>
-    <button data-lang="ru">РУС</button>
-    <button data-lang="en">ENG</button>
-  </div>
-  <button id="musicBtn" class="off" aria-label="Music">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-      <path d="M9 17V5l10-2v12"/>
-      <circle cx="6" cy="17" r="3"/>
-      <circle cx="17" cy="15" r="3"/>
-      <line class="slash" x1="4" y1="20" x2="20" y2="4"/>
-    </svg>
-  </button>
-</div>
+<div id="petals"></div>
+<button id="musicBtn" title="երաժշտություն">🔇</button>
+<audio id="music" src="music.mp3" loop></audio> <!-- ← դիր քո երաժշտության ֆայլը -->
 
-<main>
+<main id="content">
 
-  <!-- 1. HERO -->
-  <section class="sec hero">
-    <div class="hero-grid">
-      <div class="hero-left">
-        <div class="hero-tag" data-i18n="heroTag">№ 001 / հրավեր</div>
-        <h1 class="hero-names">
-          <span data-i18n="name1">Տիգրան</span><span class="amp">&</span><span data-i18n="name2">Լուսինե</span>
-        </h1>
-      </div>
-      <div class="hero-right">
-        <div class="hero-date">07 · 09 · 2026</div>
-        <div class="hero-meta">
-          <span data-i18n="metaCeremony">պսակադրություն · 15:00</span>
-          <span data-i18n="metaVenue">խոր վիրապ</span>
-          <span data-i18n="metaCity">հայաստան</span>
-        </div>
-      </div>
-    </div>
-    <div class="hero-scroll" data-i18n="heroScroll">սահեցրեք</div>
-  </section>
+  <!-- HERO -->
+  <header class="hero">
+    <p class="pre">ՀՐԱՎԻՈՒՄ ԵՆՔ ՄՐ ՀԱՐՍԱՆԻԻՆ</p>
+    <h1>Austin &amp; Eva</h1> <!-- ← ձեր անունները -->
+    <p class="date">02 . 10 . 2026</p>
+  </header>
 
-  <!-- 2. COUNTDOWN -->
-  <section class="sec countdown">
-    <div class="sec-label fade-up" data-i18n="cdLabel">01 — հետհաշվարկ</div>
-    <div class="cd-title fade-up" data-i18n="cdTitle">Մինչև այդ օրը մնացել է</div>
-    <div class="cd-display fade-up">
-      <div class="cd-block"><div class="cd-num" id="cdD">00</div><div class="cd-lbl" data-i18n="cdD">օր</div></div>
-      <div class="cd-block"><div class="cd-num" id="cdH">00</div><div class="cd-lbl" data-i18n="cdH">ժամ</div></div>
-      <div class="cd-block"><div class="cd-num" id="cdM">00</div><div class="cd-lbl" data-i18n="cdM">րոպե</div></div>
-      <div class="cd-block"><div class="cd-num" id="cdS">00</div><div class="cd-lbl" data-i18n="cdS">վայրկյան</div></div>
+  <!-- ՆԱՄԱԿ -->
+  <section class="letter reveal">
+    <div class="inner">
+      <h2>հարգելի՛ հյուրեր</h2>
+      <p>Մենք որոշել ենք մեզ համար ամենակարևոր օրը դարձնել անմոռանալի
+         և ուզում ենք այն անցկացնել մեր հարազատների ու ընկերների շրջապատում։
+         Մենք սիրով հրավիրում ենք ձեզ՝ կիսելու մեր ուրախությունը մեր հարսանիքին։</p>
     </div>
   </section>
 
-  <!-- 3. MESSAGE -->
-  <section class="sec message">
-    <div class="sec-label fade-up" data-i18n="msgLabel">02 — նամակ</div>
-    <div class="msg-grid">
-      <div class="msg-side fade-up" data-i18n="msgSide">հարգելի հյուրեր</div>
-      <div class="msg-content fade-up">
-        <span class="dear" data-i18n="msgDear">Սիրելի՛ մարդիկ,</span>
-        <p data-i18n="msg1">Այս տարվա օրերից մեկը առանձնահատուկ է լինելու, և մենք այն ցանկանում ենք անցկացնել մեր հարազատների ու ընկերների շրջապատում։</p>
-        <p data-i18n="msg2">Մեծ սիրով հրավիրում ենք Ձեզ մասնակցելու մեր հարսանիքին։</p>
+  <!-- ԱՄՍԱՑՈՒՅՑ + ՀԵՏՀԱՇՎԱՐԿ -->
+  <section class="reveal">
+    <div class="calendar">
+      <div class="cal-title">հոկտեմբեր 2026</div>
+      <div class="cal-grid">
+        <span class="dow">Կիր</span><span class="dow">Երկ</span><span class="dow">Երք</span><span class="dow">Չրք</span><span class="dow">Հնգ</span><span class="dow">Ուրբ</span><span class="dow">Շաբ</span>
+        <span></span><span></span><span></span><span></span><span class="day">1</span><span class="day special"><span>2</span></span><span class="day">3</span>
+        <span class="day">4</span><span class="day">5</span><span class="day">6</span><span class="day">7</span><span class="day">8</span><span class="day">9</span><span class="day">10</span>
+        <span class="day">11</span><span class="day">12</span><span class="day">13</span><span class="day">14</span><span class="day">15</span><span class="day">16</span><span class="day">17</span>
+        <span class="day">18</span><span class="day">19</span><span class="day">20</span><span class="day">21</span><span class="day">22</span><span class="day">23</span><span class="day">24</span>
+        <span class="day">25</span><span class="day">26</span><span class="day">27</span><span class="day">28</span><span class="day">29</span><span class="day">30</span><span class="day">31</span>
       </div>
+      <p class="cal-caption">հոկտեմբերի 2, ուրբաթ</p>
+    </div>
+    <div class="count">
+      <div class="box"><div class="num" id="cd-d">0</div><div class="lbl">Օր</div></div>
+      <div class="box"><div class="num" id="cd-h">0</div><div class="lbl">Ժամ</div></div>
+      <div class="box"><div class="num" id="cd-m">0</div><div class="lbl">Րոպե</div></div>
+      <div class="box"><div class="num" id="cd-s">0</div><div class="lbl">Վայրկյան</div></div>
     </div>
   </section>
 
-  <!-- 4. LOCATIONS -->
-  <section class="sec locations">
-    <div class="sec-label fade-up" data-i18n="locLabel">03 — վայրեր</div>
-    <div class="loc-grid fade-up">
-      <div class="loc-item">
-        <div class="loc-time">15:00</div>
-        <div class="loc-name" data-i18n="loc1Name">Խոր Վիրապ</div>
-        <div class="loc-desc" data-i18n="loc1Desc">Սուրբ պսակադրության արարողություն</div>
-        <div class="loc-idx">№ 01</div>
-      </div>
-      <div class="loc-item">
-        <div class="loc-time">17:00</div>
-        <div class="loc-name" data-i18n="loc2Name">Ֆլորենս ռեստորան</div>
-        <div class="loc-desc" data-i18n="loc2Desc">Հարսանեկան խնջույք և տոնակատարություն</div>
-        <div class="loc-idx">№ 02</div>
-      </div>
+  <!-- ՕՐՎԱ ԾՐԱԳԻՐ -->
+  <section class="program reveal">
+    <h2>Օրվա ծրագիրը</h2>
+    <div class="diamond">💎</div>
+    <div class="timeline">
+      <div class="t-item"><div class="t-time">12:00</div><div><h3>հարսի տուն</h3><p>Օրվա սկիզբը՝ ջերմ հանդիպումներով և օրհնությամբ։</p></div></div>
+      <div class="t-item"><div class="t-time">15:00</div><div><h3>եկեղեցի</h3><p>Պսակադրության արարողություն։</p></div></div>
+      <div class="t-item"><div class="t-time">17:00</div><div><h3>ռեստորան</h3><p>Համեղ ուտեստների, զվարճալի երաժշտության և պարերի ժամանակն է։</p></div></div>
     </div>
   </section>
 
-  <!-- 5. SCHEDULE -->
-  <section class="sec schedule">
-    <div class="sec-label fade-up" data-i18n="schLabel">04 — ծրագիր</div>
-    <div class="sch-grid fade-up">
-      <div class="sch-item">
-        <div class="sch-time">15:00</div>
-        <div class="sch-event" data-i18n="sch1">Պսակադրության արարողություն</div>
-        <div class="sch-idx">01</div>
-      </div>
-      <div class="sch-item">
-        <div class="sch-time">17:00</div>
-        <div class="sch-event" data-i18n="sch2">Հյուրերի դիմավորում</div>
-        <div class="sch-idx">02</div>
-      </div>
-      <div class="sch-item">
-        <div class="sch-time">18:00</div>
-        <div class="sch-event" data-i18n="sch3">Հարսանեկան պար</div>
-        <div class="sch-idx">03</div>
-      </div>
-      <div class="sch-item">
-        <div class="sch-time">18:20</div>
-        <div class="sch-event" data-i18n="sch4">Տորթի կտրման արարողություն</div>
-        <div class="sch-idx">04</div>
-      </div>
-      <div class="sch-item">
-        <div class="sch-time">22:00</div>
-        <div class="sch-event" data-i18n="sch5">Հարսանեկան հանդես</div>
-        <div class="sch-idx">05</div>
-      </div>
+  <!-- ՎԱՅՐԵՐ -->
+  <section class="reveal">
+    <h2>Տեղադրություն</h2>
+    <div class="loc-card">
+      <div class="loc-img">⛪</div> <!-- ← <img src="church.jpg"> -->
+      <h3>Սուրբ Մարիամ Աստվածածին</h3>
+      <p class="addr">Աբովյան 225</p>
+      <a class="btn" target="_blank" href="https://maps.google.com/?q=Սուրբ+Մարիամ+Աստվածածին">✈ Դիտել հասցեն</a>
+    </div>
+    <div class="loc-card">
+      <div class="loc-img">🍽️</div> <!-- ← <img src="restaurant.jpg"> -->
+      <h3>Ֆորում ռեստորան</h3>
+      <p class="addr">Բաղրամյան 64/2</p>
+      <a class="btn" target="_blank" href="https://maps.google.com/?q=Բաղրամյան+64/2">✈ Դիտել հասցեն</a>
     </div>
   </section>
 
-  <!-- 6. DETAILS -->
-  <section class="sec details">
-    <div class="sec-label fade-up" data-i18n="detLabel">05 — մանրամասներ</div>
-    <div class="det-grid fade-up">
-      <div class="det-block">
-        <div class="det-title" data-i18n="detDressTitle">հագուստի կոդ</div>
-        <div class="det-text" data-i18n="detDressText">
-          <p>Մեզ համար ամենակարևորը Ձեր ներկայությունն է։</p>
-          <p>Ուրախ կլինենք, եթե ներկա գտնվեք կոկտելային գույների հագուստով։</p>
-          <p>Թող այդ օրը սպիտակ զգեստով լինի միայն հարսնացուն 🤍</p>
-        </div>
+  <!-- RSVP -->
+  <section class="rsvp reveal">
+    <h2>հաստատեք մասնակցությունը</h2>
+    <p class="sub">խնդրում ենք հաստատել ձեր մասնակցությունը մինչև սեպտեմբերի 1-ը</p>
+    <form id="rsvpForm">
+      <label>Անուն</label><input type="text" required placeholder="Ձեր անունը">
+      <label>Հեռախոսահամար</label><input type="tel" placeholder="+374 ...">
+      <label>Դուք հրավիրված եք՝</label>
+      <div class="choices" data-group="side">
+        <button type="button" class="choice active">փեսայի կողմից</button>
+        <button type="button" class="choice">հարսի կողմից</button>
       </div>
-      <div class="det-block">
-        <div class="det-title" data-i18n="detNoteTitle">ծանոթագրություն</div>
-        <div class="det-text" data-i18n="detNoteText">
-          <p>Հարսի պարի և հրավառության ընթացքում խնդրում ենք ծնողներին ուշադիր լինել իրենց բալիկների նկատմամբ։</p>
-          <p>Սիրով սպասում ենք Ձեզ։</p>
-        </div>
+      <label>Կներկանա՞ք արդյոք</label>
+      <div class="choices" data-group="attend">
+        <button type="button" class="choice active">Այո, անպայման կգամ</button>
+        <button type="button" class="choice">Ցավոք, չեմ կարող</button>
       </div>
+      <label>Հյուրերի քանակ</label><input type="number" min="1" max="10" value="1">
+      <label>Հատուկ ցանկություն</label><textarea rows="3"></textarea>
+      <button class="btn" type="submit">✈ Հաստատել</button>
+    </form>
+    <div class="success" id="successMsg">Շնորհակալություն ❤<br>Ձեր պատասխանն ստացված է։ Մինչև հանդիպում․․․</div>
+  </section>
+
+  <!-- ՊԱՏԿԵՐԱՍՐԱՀ -->
+  <section class="reveal">
+    <h2>Մինչև հանդիպում</h2>
+    <div class="gallery-grid">
+      <div class="ph">❤</div><div class="ph">❤</div><div class="ph">❤</div> <!-- ← ձեր լուսանկարները -->
     </div>
   </section>
 
-  <!-- 7. RSVP -->
-  <section class="sec rsvp">
-    <div class="sec-label fade-up" data-i18n="rsvpLabel">06 — հաստատում</div>
-    <div class="rsvp-container fade-up">
-      <div class="rsvp-deadline">
-        <span data-i18n="rsvpDeadline">Խնդրում ենք հաստատել Ձեր ներկայությունը մինչև <b>օգոստոսի 20-ը</b></span>
-      </div>
-      
-      <form id="rsvpForm" class="rsvp-form" novalidate>
-        <div class="rsvp-row">
-          <label class="rsvp-label" data-i18n="rsvpSide">Ու՞մ կողմից եք հրավիրված</label>
-          <div class="rsvp-radios">
-            <label class="rsvp-radio">
-              <input type="radio" name="side" value="groom" required>
-              <span class="dot"></span>
-              <span data-i18n="sideA">Փեսայի կողմ</span>
-            </label>
-            <label class="rsvp-radio">
-              <input type="radio" name="side" value="bride">
-              <span class="dot"></span>
-              <span data-i18n="sideB">Հարսի կողմ</span>
-            </label>
-          </div>
-        </div>
-
-        <div class="rsvp-row">
-          <label class="rsvp-label" data-i18n="rsvpName">Անուն ազգանուն</label>
-          <input class="rsvp-input" id="guestName" type="text" placeholder="—" autocomplete="name" data-i18n-ph="namePh" required>
-        </div>
-
-        <div class="rsvp-row">
-          <label class="rsvp-label" data-i18n="rsvpCount">Հյուրերի քանակ</label>
-          <input class="rsvp-input" id="guestCountInput" type="number" value="1" min="1" max="10" required>
-        </div>
-
-        <button class="rsvp-btn" type="submit" data-i18n="rsvpBtn">ուղարկել</button>
-        
-        <div class="rsvp-note" id="rsvpNote"></div>
-        <div class="rsvp-done" id="rsvpDone" hidden data-i18n="rsvpDone">Շնորհակալություն։<br>Սիրով սպասում ենք Ձեզ։</div>
-      </form>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div data-i18n="ftLeft">հրավեր · 2026</div>
-    <div class="footer-center" data-i18n="ftCenter">Տ <em>&</em> Լ</div>
-    <div class="footer-right" data-i18n="ftRight">all rights reserved</div>
+  <footer>
+    <div class="fn">Eva &amp; Austin</div>
+    <div class="fd">02 . 10 . 2026</div>
+    <div class="made">MADE WITH ❤ FOR OUR WEDDING DAY</div>
   </footer>
-
 </main>
 
 <script>
-/* ═══════════ CONFIG ═══════════ */
-const CONFIG = {
-  weddingDate: new Date(2026, 8, 7, 15, 0, 0),
-  rsvpEmail: "tigran.lusine.wedding@gmail.com"
-};
-
-const T = {
-  hy: {
-    metaStatus: 'հրավեր · ակտիվ', metaDate: '07 / 09 / 2026',
-    metaCeremony: 'պսակադրություն · 15:00', metaVenue: 'խոր վիրապ', metaCity: 'հայաստան',
-    heroTag: '№ 001 / հրավեր', heroScroll: 'սահեցրեք',
-    name1: 'Տիգրան', name2: 'Լուսինե',
-    cdLabel: '01 — հետհաշվարկ', cdTitle: 'Մինչև այդ օրը մնացել է',
-    cdD: 'օր', cdH: 'ժամ', cdM: 'րոպե', cdS: 'վայրկյան',
-    msgLabel: '02 — նամակ', msgSide: 'հարգելի հյուրեր',
-    msgDear: 'Սիրելի՛ մարդիկ,',
-    msg1: 'Այս տարվա օրերից մեկը առանձնահատուկ է լինելու, և մենք այն ցանկանում ենք անցկացնել մեր հարազատների ու ընկերների շրջապատում։',
-    msg2: 'Մեծ սիրով հրավիրում ենք Ձեզ մասնակցելու մեր հարսանիքին։',
-    locLabel: '03 — վայրեր',
-    loc1Name: 'Խոր Վիրապ', loc1Desc: 'Սուրբ պսակադրության արարողություն',
-    loc2Name: 'Ֆլորենս ռեստորան', loc2Desc: 'Հարսանեկան խնջույք և տոնակատարություն',
-    schLabel: '04 — ծրագիր',
-    sch1: 'Պսակադրության արարողություն', sch2: 'Հյուրերի դիմավորում',
-    sch3: 'Հարսանեկան պար', sch4: 'Տորթի կտրման արարողություն', sch5: 'Հարսանեկան հանդես',
-    detLabel: '05 — մանրամասներ',
-    detDressTitle: 'հագուստի կոդ',
-    detDressText: '<p>Մեզ համար ամենակարևորը Ձեր ներկայությունն է։</p><p>Ուրախ կլինենք, եթե ներկա գտնվեք կոկտելային գույների հագուստով։</p><p>Թող այդ օրը սպիտակ զգեստով լինի միայն հարսնացուն 🤍</p>',
-    detNoteTitle: 'ծանոթագրություն',
-    detNoteText: '<p>Հարսի պարի և հրավառության ընթացքում խնդրում ենք ծնողներին ուշադիր լինել իրենց բալիկների նկատմամբ։</p><p>Սիրով սպասում ենք Ձեզ։</p>',
-    rsvpLabel: '06 — հաստատում',
-    rsvpDeadline: 'Խնդրում ենք հաստատել Ձեր ներկայությունը մինչև <b>օգոստոսի 20-ը</b>',
-    rsvpSide: 'Ու՞մ կողմից եք հրավիրված',
-    sideA: 'Փեսայի կողմ', sideB: 'Հարսի կողմ',
-    rsvpName: 'Անուն ազգանուն', namePh: '—',
-    rsvpCount: 'Հյուրերի քանակ',
-    rsvpBtn: 'ուղարկել',
-    rsvpNote: 'Ձեր պատասխանը կուղարկվի <b>{email}</b> էլ. հասցեին',
-    rsvpDone: 'Շնորհակալություն։<br>Սիրով սպասում ենք Ձեզ։',
-    ftLeft: 'հրավեր · 2026', ftCenter: 'Տ <em>&</em> Լ', ftRight: 'all rights reserved'
-  },
-  ru: {
-    metaStatus: 'приглашение · активно', metaDate: '07 / 09 / 2026',
-    metaCeremony: 'венчание · 15:00', metaVenue: 'хор вирап', metaCity: 'армения',
-    heroTag: '№ 001 / приглашение', heroScroll: 'листайте',
-    name1: 'Тигран', name2: 'Лусине',
-    cdLabel: '01 — отсчёт', cdTitle: 'До этого дня осталось',
-    cdD: 'дней', cdH: 'часов', cdM: 'минут', cdS: 'секунд',
-    msgLabel: '02 — письмо', msgSide: 'дорогие гости',
-    msgDear: 'Дорогие наши,',
-    msg1: 'Один из дней этого года будет особенным, и мы хотим провести его в кругу родных и друзей.',
-    msg2: 'С большой любовью приглашаем вас на нашу свадьбу.',
-    locLabel: '03 — места',
-    loc1Name: 'Хор Вирап', loc1Desc: 'Церемония святого венчания',
-    loc2Name: 'Ресторан Florence', loc2Desc: 'Свадебный банкет и торжество',
-    schLabel: '04 — программа',
-    sch1: 'Церемония венчания', sch2: 'Встреча гостей',
-    sch3: 'Свадебный танец', sch4: 'Разрезание торта', sch5: 'Свадебное торжество',
-    detLabel: '05 — детали',
-    detDressTitle: 'дресс-код',
-    detDressText: '<p>Для нас важнее всего ваше присутствие.</p><p>Будем рады, если вы придете в одежде коктейльных цветов.</p><p>Пусть в этот день в белом будет только невеста 🤍</p>',
-    detNoteTitle: 'примечание',
-    detNoteText: '<p>Во время танца и фейерверка просим родителей быть внимательными к своим детям.</p><p>С любовью ждём вас.</p>',
-    rsvpLabel: '06 — подтверждение',
-    rsvpDeadline: 'Пожалуйста, подтвердите присутствие до <b>20 августа</b>',
-    rsvpSide: 'С чьей стороны вы приглашены',
-    sideA: 'Сторона жениха', sideB: 'Сторона невесты',
-    rsvpName: 'Имя и фамилия', namePh: '—',
-    rsvpCount: 'Количество гостей',
-    rsvpBtn: 'отправить',
-    rsvpNote: 'Ваш ответ будет отправлен на <b>{email}</b>',
-    rsvpDone: 'Спасибо.<br>С любовью ждём вас.',
-    ftLeft: 'приглашение · 2026', ftCenter: 'Т <em>&</em> Л', ftRight: 'all rights reserved'
-  },
-  en: {
-    metaStatus: 'invitation · active', metaDate: '07 / 09 / 2026',
-    metaCeremony: 'ceremony · 15:00', metaVenue: 'khor virap', metaCity: 'armenia',
-    heroTag: '№ 001 / invitation', heroScroll: 'scroll down',
-    name1: 'Tigran', name2: 'Lusine',
-    cdLabel: '01 — countdown', cdTitle: 'Until that day remains',
-    cdD: 'days', cdH: 'hours', cdM: 'mins', cdS: 'seconds',
-    msgLabel: '02 — letter', msgSide: 'dear guests',
-    msgDear: 'Dear people,',
-    msg1: 'One day of this year will be special, and we wish to spend it surrounded by our family and friends.',
-    msg2: 'With great love, we invite you to our wedding.',
-    locLabel: '03 — locations',
-    loc1Name: 'Khor Virap', loc1Desc: 'Holy wedding ceremony',
-    loc2Name: 'Florence Restaurant', loc2Desc: 'Wedding banquet and celebration',
-    schLabel: '04 — schedule',
-    sch1: 'Wedding ceremony', sch2: 'Guest reception',
-    sch3: 'First dance', sch4: 'Cake cutting', sch5: 'Wedding party',
-    detLabel: '05 — details',
-    detDressTitle: 'dress code',
-    detDressText: '<p>Your presence is what matters most to us.</p><p>We would be happy if you attend in cocktail attire colors.</p><p>Please, let the bride be the only one in white that day 🤍</p>',
-    detNoteTitle: 'note',
-    detNoteText: '<p>During the first dance and fireworks, we kindly ask parents to watch their children.</p><p>With love, we await you.</p>',
-    rsvpLabel: '06 — rsvp',
-    rsvpDeadline: 'Please confirm your presence by <b>August 20th</b>',
-    rsvpSide: 'Whose side are you invited from',
-    sideA: 'Groom\'s side', sideB: 'Bride\'s side',
-    rsvpName: 'Full name', namePh: '—',
-    rsvpCount: 'Number of guests',
-    rsvpBtn: 'submit',
-    rsvpNote: 'Your reply will be sent to <b>{email}</b>',
-    rsvpDone: 'Thank you.<br>With love, we await you.',
-    ftLeft: 'invitation · 2026', ftCenter: 'T <em>&</em> L', ftRight: 'all rights reserved'
-  }
-};
-const TITLES = {hy:'Տ. & Լ. — 07.09.2026', ru:'Т. & Л. — 07.09.2026', en:'T. & L. — 07.09.2026'};
-
-const $ = s => document.querySelector(s);
-const $$ = s => document.querySelectorAll(s);
-let LANG = (localStorage.getItem('wl-lang') || 'hy');
-
-/* ─── Music ─── */
-const Music = (() => {
-  let ctx, master, playing = false, timer, step = 0;
-  const BAR = 4.8;
-  const SEQ = [{b:73.42,t:[293.66,369.99,440]},{b:110,t:[277.18,329.63,440]},{b:123.47,t:[246.94,293.66,369.99]},{b:92.5,t:[277.18,369.99,440]}];
-  function ensure() {
-    if (ctx) return;
-    ctx = new (window.AudioContext || window.webkitAudioContext)();
-    master = ctx.createGain(); master.gain.value = 0; master.connect(ctx.destination);
-  }
-  function tone(f, t, dur, vol, type) {
-    const o = ctx.createOscillator(), g = ctx.createGain();
-    o.type = type || 'sine'; o.frequency.value = f;
-    g.gain.setValueAtTime(0.001, t); g.gain.linearRampToValueAtTime(vol, t + 0.1); g.gain.exponentialRampToValueAtTime(0.001, t + dur);
-    o.connect(g); g.connect(master); o.start(t); o.stop(t + dur + 0.1);
-  }
-  function bar(i, t) {
-    const c = SEQ[i % 4], e = BAR / 4;
-    tone(c.b, t, BAR + 1, 0.04, 'triangle');
-    for (let k = 0; k < 4; k++) tone(c.t[k % 3] * (k === 3 ? 2 : 1), t + k * e, e * 2, 0.02, 'sine');
-  }
-  function loop() {
-    if (!playing) return;
-    bar(step++, ctx.currentTime + 0.1);
-    timer = setTimeout(loop, BAR * 1000);
-  }
-  function start() { ensure(); ctx.resume(); playing = true; master.gain.setTargetAtTime(0.15, ctx.currentTime, 1); loop(); }
-  function stop() { playing = false; clearTimeout(timer); if (ctx) master.gain.setTargetAtTime(0, ctx.currentTime, 0.5); }
-  return { start, stop, isPlaying: () => playing };
-})();
-
-$('#musicBtn').addEventListener('click', e => {
-  e.stopPropagation();
-  if (Music.isPlaying()) { Music.stop(); $('#musicBtn').classList.add('off'); }
-  else { Music.start(); $('#musicBtn').classList.remove('off'); }
-});
-
-/* ─── Countdown ─── */
-(function() {
-  const pad = n => String(n).padStart(2, '0');
-  function tick() {
-    let diff = CONFIG.weddingDate - new Date();
-    if (diff <= 0) { ['cdD','cdH','cdM','cdS'].forEach(id => $('#' + id).textContent = '00'); return; }
-    $('#cdD').textContent = pad(Math.floor(diff / 864e5));
-    $('#cdH').textContent = pad(Math.floor(diff / 36e5) % 24);
-    $('#cdM').textContent = pad(Math.floor(diff / 6e4) % 60);
-    $('#cdS').textContent = pad(Math.floor(diff / 1e3) % 60);
-  }
-  tick(); setInterval(tick, 1000);
-})();
-
-/* ─── RSVP ─── */
-$('#rsvpForm').addEventListener('submit', e => {
-  e.preventDefault();
-  const side = $('#rsvpForm').querySelector('input[name="side"]:checked');
-  const name = $('#guestName').value.trim();
-  const count = $('#guestCountInput').value;
-  if (!side || !name || !count) return;
-  
-  const sideTxt = side.value === 'groom' ? T[LANG].sideA : T[LANG].sideB;
-  const subject = encodeURIComponent(`Հարսանիքի հաստատում — ${name}`);
-  const body = encodeURIComponent(`Անուն, ազգանուն՝ ${name}\nԿողմ՝ ${sideTxt}\nՀյուրերի քանակ՝ ${count}\n\nՍիրով սպասում ենք Ձեզ։`);
-  location.href = `mailto:${CONFIG.rsvpEmail}?subject=${subject}&body=${body}`;
-  
-  $('#rsvpDone').hidden = false;
-  $('#rsvpForm').querySelectorAll('.rsvp-row, .rsvp-btn').forEach(el => el.style.display = 'none');
-});
-
-/* ─── Scroll Animations ─── */
-const io = new IntersectionObserver(es => es.forEach(e => {
-  if (e.isIntersecting) {
-    e.target.classList.add('visible');
-  }
-}), { threshold: 0.15 });
-$$('.fade-up').forEach(el => io.observe(el));
-
-/* ─── Language ─── */
-function applyLang(l) {
-  LANG = l;
-  localStorage.setItem('wl-lang', l);
-  document.documentElement.lang = l;
-  document.title = TITLES[l];
-  
-  $$('[data-i18n]').forEach(el => {
-    const k = el.dataset.i18n;
-    if (T[l][k] != null) el.innerHTML = T[l][k];
-  });
-  $$('[data-i18n-ph]').forEach(el => {
-    const k = el.dataset.i18nPh;
-    if (T[l][k] != null) el.placeholder = T[l][k];
-  });
-  
-  $('#rsvpNote').innerHTML = T[l].rsvpNote.replace('{email}', CONFIG.rsvpEmail);
-  $$('#lang button').forEach(b => b.classList.toggle('on', b.dataset.lang === l));
+/* ---------- Ծաղկե սիրտ ---------- */
+const heart = document.getElementById('heart');
+for (let i = 0; i < 240; i++) {
+  const t = Math.random() * Math.PI * 2, s = Math.sqrt(Math.random());
+  const x = 16 * Math.sin(t) ** 3;
+  const y = 13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t);
+  const p = document.createElement('div');
+  p.className = 'hp';
+  const size = 10 + Math.random() * 14;
+  p.style.width = p.style.height = size + 'px';
+  p.style.left = `calc(50% + ${x * s * 8}px)`;
+  p.style.top  = `calc(50% - ${y * s * 8}px)`;
+  p.style.setProperty('--tx', (Math.random()*2-1) * 480 + 'px');
+  p.style.setProperty('--ty', (Math.random()*2-1) * 480 + 'px');
+  p.style.setProperty('--r',  (Math.random()*2-1) * 540 + 'deg');
+  p.style.setProperty('--d',  (Math.random()*.35) + 's');
+  heart.appendChild(p);
 }
 
-$$('#lang button').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
+const intro = document.getElementById('intro');
+intro.addEventListener('click', () => {
+  heart.classList.add('scatter');
+  setTimeout(() => {
+    intro.classList.add('hide');
+    document.body.classList.add('ready');
+    startPetals();
+    const m = document.getElementById('music');
+    m.play().then(() => { musicOn = true; musicBtn.textContent = '🔊'; }).catch(()=>{});
+  }, 900);
+}, { once:true });
 
-applyLang(LANG);
+/* ---------- Թռչող թերթիկներ ---------- */
+function startPetals(){
+  setInterval(() => {
+    if (document.querySelectorAll('.fp').length > 40) return;
+    const f = document.createElement('div');
+    f.className = 'fp';
+    const s = 8 + Math.random() * 12;
+    f.style.width = f.style.height = s + 'px';
+    f.style.left = Math.random() * 100 + 'vw';
+    f.style.setProperty('--dx', (Math.random()*2-1) * 140 + 'px');
+    f.style.animationDuration = 6 + Math.random() * 6 + 's';
+    f.addEventListener('animationend', () => f.remove());
+    document.getElementById('petals').appendChild(f);
+  }, 450);
+}
+
+/* ---------- Հետհաշվարկ (փոխիր ամսաթիվն այստեղ) ---------- */
+const target = new Date('2026-10-02T12:00:00');
+setInterval(() => {
+  let diff = target - Date.now();
+  if (diff < 0) diff = 0;
+  cd_d.textContent = Math.floor(diff / 864e5);
+  cd_h.textContent = String(Math.floor(diff / 36e5) % 24).padStart(2,'0');
+  cd_m.textContent = String(Math.floor(diff / 6e4) % 60).padStart(2,'0');
+  cd_s.textContent = String(Math.floor(diff / 1e3) % 60).padStart(2,'0');
+}, 1000);
+
+/* ---------- Scroll-reveal ---------- */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) e.target.classList.add('visible');
+}), { threshold:.15 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ---------- RSVP ---------- */
+document.querySelectorAll('.choices').forEach(group => {
+  group.querySelectorAll('.choice').forEach(btn => btn.addEventListener('click', () => {
+    group.querySelectorAll('.choice').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }));
+});
+document.getElementById('rsvpForm').addEventListener('submit', e => {
+  e.preventDefault(); // ← այստեղ կարող ես ավելացնել ուղարկումը (Formspree / Google Form / API)
+  e.target.style.display = 'none';
+  document.getElementById('successMsg').style.display = 'block';
+});
+
+/* ---------- Երաժշտություն ---------- */
+let musicOn = false;
+const musicBtn = document.getElementById('musicBtn'), music = document.getElementById('music');
+musicBtn.addEventListener('click', () => {
+  musicOn = !musicOn;
+  musicOn ? music.play().catch(()=>{}) : music.pause();
+  musicBtn.textContent = musicOn ? '🔊' : '🔇';
+});
 </script>
 </body>
 </html>

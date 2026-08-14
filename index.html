@@ -10,7 +10,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,500;1,400;1,600&family=Noto+Sans+Armenian:wght@400;500;600&family=Noto+Serif+Armenian:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
 <style>
-/* ================= ՓՈՓՈԽԱԿԱՆՆԵ ================= */
 :root{
   --burgundy:#6d0b22;
   --burgundy-dark:#4d0718;
@@ -28,7 +27,6 @@ body{
 }
 button{font:inherit}
 
-/* ================= ԸՆԴՀԱՆՈՒՐ ================= */
 section{padding:76px 22px;text-align:center}
 .am-head{font-style:italic;font-weight:700;font-size:1.9rem;line-height:1.35}
 .it{font-style:italic}
@@ -48,23 +46,41 @@ section{padding:76px 22px;text-align:center}
 .btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(84,8,26,.35)}
 .btn .icon{width:15px;height:15px}
 
-/* ================= ԻՆՏՐՈ (թերթիկներ) ================= */
+/* ================= ԻՆՏՐՈ․ սիրտը բացվում է → թերթիկներ ================= */
 #intro{
-  position:fixed;inset:0;background:#f7f3ec;z-index:200;
+  position:fixed;inset:0;background:#f2ebdd;z-index:200;
   overflow:hidden;transition:opacity .9s ease;
 }
 #intro.hide{opacity:0;pointer-events:none}
-.petal{
-  position:absolute;top:-6%;display:block;
-  border-radius:70% 30% 60% 40% / 50% 60% 40% 50%;
-  animation:fall linear infinite;
+
+/* սրտի նկարը՝ «վարդերը բացվում են» */
+.intro-heart{
+  position:absolute;inset:0;
+  background:url('images/intro-heart.jpg') center/contain no-repeat;
+  animation:bloom 1.6s cubic-bezier(.2,.8,.3,1.1) both,
+            heartExit .9s ease-in 2.3s both;   /* 2.3s-ից սիրտը փլվում է */
 }
-@keyframes fall{
-  0%{transform:translate3d(0,-6vh,0) rotate(0deg)}
-  100%{transform:translate3d(var(--sway),108vh,0) rotate(var(--rot))}
+@keyframes bloom{
+  0%{transform:scale(.2);clip-path:circle(0% at 50% 50%);opacity:0;filter:blur(8px)}
+  100%{transform:scale(1);clip-path:circle(75% at 50% 50%);opacity:1;filter:blur(0)}
+}
+@keyframes heartExit{
+  to{transform:scale(1.55);opacity:0;filter:blur(5px)}
 }
 
-/* ================= ԵՐԱԺՇՏՈՒԹՅԱՆ ԿՈՃԱԿ ================= */
+/* թերթիկներ՝ սկսում են թափվել, երբ սիրտը փլվում է */
+.petal{
+  position:absolute;top:-6%;display:block;opacity:0;
+  border-radius:70% 30% 60% 40% / 50% 60% 40% 50%;
+  animation:fall linear both;
+}
+@keyframes fall{
+  0%{transform:translate3d(0,-6vh,0) rotate(0deg);opacity:0}
+  10%{opacity:var(--op,1)}
+  100%{transform:translate3d(var(--sway),108vh,0) rotate(var(--rot));opacity:var(--op,1)}
+}
+
+/* ================= ԵԱԺՏՈՒԹՅԱՆ ԿՈՃԱԿ ================= */
 .music-btn{
   position:fixed;right:18px;bottom:18px;z-index:90;
   width:52px;height:52px;border-radius:50%;border:0;cursor:pointer;
@@ -108,7 +124,7 @@ section{padding:76px 22px;text-align:center}
   font-size:.86rem;line-height:2.15;color:rgba(242,236,225,.85);
 }
 
-/* ================= ՀԱՐՍԱՆԻԻ ՕՐԸ ================= */
+/* ================= ՀԱՐՍԱՆՔԻ ՐԸ ================= */
 .day{background:var(--cream)}
 .month{font-style:italic;font-size:1.15rem;margin-top:10px}
 .calendar{
@@ -224,22 +240,22 @@ footer .divider{margin-bottom:26px}
 </head>
 <body>
 
-<!-- ========= ԻՆՏՐՈ (թերթիկներ) ========= -->
-<div id="intro"></div>
+<!-- ========= ԻՏՐՈ․ նկարը images/intro-heart.jpg ========= -->
+<div id="intro"><div class="intro-heart"></div></div>
 
-<!-- ========= ԵՐԱԺՇՏՈՒԹՅՈՒՆ․ փոխարինիր music.mp3 ֆայլը քոյով ========= -->
+<!-- ========= ԵՐԱԺՇՏՈՒԹՅՈՒՆ ========= -->
 <audio id="bgMusic" loop preload="auto"><source src="music.mp3" type="audio/mpeg"></audio>
 <button class="music-btn muted" id="musicBtn" aria-label="Երաժշտություն">
   <svg class="icon ic-play" viewBox="0 0 24 24"><path d="M11 5L6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 6a9 9 0 0 1 0 12"/></svg>
   <svg class="icon ic-mute" viewBox="0 0 24 24"><path d="M11 5L6 9H3v6h3l5 4V5z"/><path d="M22 9l-6 6M16 9l6 6"/></svg>
 </button>
 
-<!-- ========= HERO․ նկարը փոխիր .hero-bg-ի style-ում ========= -->
+<!-- ========= HERO ========= -->
 <header class="hero">
   <div class="hero-bg" style="background-image:url('images/hero.jpg')"></div>
   <div class="hero-content">
     <h1 class="h-names">Austin &amp; Eva</h1>
-    <p class="h-invite">ՀՐԱՎԻՐՈՒՄ ԵՆՔ ՁԶ ՄԵՐ ՀԱՐՍԱՆԻՔԻՆ</p>
+    <p class="h-invite">ՀՐԱՎԻՈՒՄ ԵՆՔ ՁԵԶ ՄԵՐ ՀԱՐՍԱՆՔԻ</p>
     <p class="h-sirov">Sirov</p>
     <p class="h-date">02.10.2026</p>
   </div>
@@ -252,7 +268,7 @@ footer .divider{margin-bottom:26px}
   <p>Այս գեղեցիկ օրը մեզ համար առանձնահատուկ է լինելու, և մենք ուզում ենք այն անցկացնել մեր հարազատների ու ընկերների շրջապատում։ Ձեր ներկայությունը մեզ համար ամենամեծ ուրախությունն է։ Հրավիրում ենք ձեզ միանալու մեր հարսանիքին։</p>
 </section>
 
-<!-- ========= ՀԱՐՍԱՆԻԻ ՕՐԸ ========= -->
+<!-- ========= ՀԱՐՍԱՆՔԻ ՐԸ ========= -->
 <section class="day reveal">
   <h2 class="am-head">հարսանիքի օրը</h2>
   <p class="month">հոկտեմբերի 2026</p>
@@ -303,8 +319,7 @@ footer .divider{margin-bottom:26px}
   </div>
 </section>
 
-<!-- ========= ՎԱՅՐԵՐ․ նկարները փոխիր .venue-photo-ների style-ում,
-     քարտեզի հղումները՝ a.btn-ի href-ում ========= -->
+<!-- ========= ՎԱՅՐԵՐ ========= -->
 <section class="venues reveal">
   <h2 class="am-head">անցկացման վայրեր</h2>
 
@@ -367,7 +382,7 @@ footer .divider{margin-bottom:26px}
   </form>
 </section>
 
-<!-- ========= ԳԱԼԵՐԵԱ․ նկարները փոխիր .ph-ների style-ում ========= -->
+<!-- ========= ԳԱԼԵՐԵԱ ========= -->
 <section class="gallery reveal">
   <div class="divider">
     <span class="line"></span>
@@ -384,7 +399,7 @@ footer .divider{margin-bottom:26px}
   <div class="polaroid big"><div class="ph" style="background-image:url('images/photo3.jpg')"></div></div>
 </section>
 
-<!-- ========= ՖՈՒՏԵՐ ========= -->
+<!-- ========= ՖՈՏԵ ========= -->
 <footer>
   <div class="divider">
     <span class="line"></span>
@@ -399,8 +414,8 @@ footer .divider{margin-bottom:26px}
 <script>
 /* =====================================================
    ԿԱՐԳԱՎՈՐՈՒՄՆԵՐ
-   ⬇️ ՓՈԽԱՐԻՆԻՐ ՄԵՅԸ ՔՈ ՄԵԼՈՎ․
-   RSVP պատասխանները կգան այս հասցեին (FormSubmit-ով)։
+   ⬇️ ՈԽԱԻՆՐ ՄՅԼԸ ՔՈ ՄԵԼՈՎ․
+   RSVP պատասխանները կգան այս հասցեին (FormSubmit)։
    Առաջին ուղարկումից հետո FormSubmit-ը ակտիվացման
    նամակ կուղարկի քո մեյլին՝ մեկ անգամ հաստատիր։
 ===================================================== */
@@ -409,7 +424,7 @@ const CONFIG = {
   weddingDate: "2026-10-02T12:00:00"
 };
 
-/* ---------- ԻՆՏՈ․ երթիկներ ---------- */
+/* ---------- ԻՆՏՐՈ․ սիրտ → թերթիկներ ---------- */
 (function(){
   const intro = document.getElementById('intro');
   const colors = ['#f3a7c3','#ec7fae','#e56ba0','#f7c6d9','#e88fb4','#fbdce8'];
@@ -421,24 +436,24 @@ const CONFIG = {
     p.style.height = s * (0.85 + Math.random()*0.5) + 'px';
     p.style.left   = Math.random()*100 + '%';
     p.style.background = colors[i % colors.length];
-    p.style.opacity = 0.65 + Math.random()*0.35;
-    p.style.animationDuration = (4 + Math.random()*4) + 's';
-    p.style.animationDelay = (-Math.random()*8) + 's';
+    p.style.animationDuration = (3.5 + Math.random()*3) + 's';
+    p.style.animationDelay = (2.2 + Math.random()*1.4) + 's';  // թերթիկները սկսում են, երբ սիրտը փլվում է
+    p.style.setProperty('--op', (0.65 + Math.random()*0.35));
     p.style.setProperty('--sway', (Math.random()*90 - 45) + 'px');
     p.style.setProperty('--rot',  (Math.random()*720 - 360) + 'deg');
     intro.appendChild(p);
   }
   window.addEventListener('load', () => {
-    setTimeout(() => intro.classList.add('hide'), 2200);
+    setTimeout(() => intro.classList.add('hide'), 4600); // սիրտ 1.6s + պահ + փլվել + թերթիկներ
   });
 })();
 
-/* ---------- ՕԱՑՈՒՅՑ ---------- */
+/* ---------- ՕՐԱՑՈՒՅՑ ---------- */
 (function(){
   const d = new Date(CONFIG.weddingDate);
   const y = d.getFullYear(), m = d.getMonth(), wd = d.getDate();
   const grid = document.getElementById('calGrid');
-  const first = new Date(y, m, 1).getDay();           // 0 = Կիր
+  const first = new Date(y, m, 1).getDay();
   const days  = new Date(y, m + 1, 0).getDate();
   let html = '';
   for(let i=0;i<first;i++) html += '<span></span>';
@@ -489,15 +504,13 @@ document.querySelectorAll('.toggle').forEach(t => {
     if(audio.paused){ audio.play().catch(()=>{}); btn.classList.remove('muted'); }
     else            { audio.pause();              btn.classList.add('muted'); }
   });
-  /* փորձում ենք միացնել էջի հետ առաջին շման պահին */
   document.addEventListener('pointerdown', function once(){
-    if(!audio.paused === false && btn.classList.contains('muted')){}
     audio.play().then(()=>btn.classList.remove('muted')).catch(()=>{});
     document.removeEventListener('pointerdown', once);
   });
 })();
 
-/* ---------- RSVP → ՄԵՅ ---------- */
+/* ---------- RSVP → ՄԵԼ ---------- */
 document.getElementById('rsvpForm').addEventListener('submit', async function(e){
   e.preventDefault();
   const btn  = document.getElementById('submitBtn');
@@ -528,7 +541,6 @@ document.getElementById('rsvpForm').addEventListener('submit', async function(e)
     if(!res.ok) throw new Error();
     done();
   }catch(err){
-    /* պահեստային տարբերակ՝ բացում է մեյլի հավելվածը */
     const body = encodeURIComponent(
       'Անուն՝ ' + name + '\r\nԱզգանուն՝ ' + last +
       '\r\nԿողմը՝ ' + side + '\r\nՄասնակցություն՝ ' + att +

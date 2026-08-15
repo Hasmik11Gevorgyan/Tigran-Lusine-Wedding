@@ -2,7 +2,7 @@
 <html lang="hy">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Տիգրան & Լուսինե — Հարսանիքի հրավեր</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,32 +46,116 @@ section{padding:76px 22px;text-align:center}
 .btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(84,8,26,.35)}
 .btn .icon{width:15px;height:15px}
 
-/* ================= ԻՆՏՐ ================= */
+/* ================= ԻՆՐ (ՆՐ ԴԻԶԱՅՆ) ================= */
 #intro{
-  position:fixed;inset:0;background:#f2ebdd;z-index:200;
-  overflow:hidden;transition:opacity .8s ease;
+  position:fixed;inset:0;z-index:200;
+  background-color: #000;
+  /* Նկարը դրվում է որպես ֆոն */
+  background-image: url('intro-bg.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end; /* Տեղափոխում ենք ներքև */
+  padding-bottom: 15vh;
+  
+  transition: opacity 1s ease, visibility 1s;
+  cursor: pointer;
+  overflow: hidden;
 }
-#intro.hide{opacity:0;pointer-events:none}
 
-.intro-heart{
-  position:absolute;inset:0;
-  background:url('heart.jpg') center/contain no-repeat;
-  animation:bloom .8s cubic-bezier(.2,.8,.3,1.1) both,
-            heartExit .7s ease-in 1.1s both;
-}
-@keyframes bloom{
-  0%{transform:scale(.1);clip-path:circle(0% at 50% 50%);opacity:0;filter:blur(12px)}
-  100%{transform:scale(1);clip-path:circle(75% at 50% 50%);opacity:1;filter:blur(0)}
-}
-@keyframes heartExit{
-  to{transform:scale(1.8);opacity:0;filter:blur(8px)}
+/* Մթագնող շերտ, որպեսզի տեքստը երևա */
+#intro::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.6) 100%);
+  z-index: 1;
 }
 
+#intro.hide{
+  opacity:0;
+  visibility: hidden;
+  pointer-events:none;
+}
+
+/* Մատի հետքի կոնտեյներ */
+.tap-container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: float 2s ease-in-out infinite;
+}
+
+/* Մատի SVG պատկերակ */
+.finger-icon {
+  width: 50px;
+  height: 50px;
+  fill: rgba(255, 255, 255, 0.9);
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+  margin-bottom: 15px;
+  animation: tapAction 1.5s infinite;
+}
+
+/* "Բացիր" տեքստը */
+.tap-text {
+  color: #fff;
+  font-family: 'Noto Sans Armenian', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(4px);
+  padding: 8px 24px;
+  border-radius: 30px;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+/* Ալիքի էֆեկտ (Ripple) սեղմելիս */
+.ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* Անիմացիաներ */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes tapAction {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.85); }
+  100% { transform: scale(1); }
+}
+
+@keyframes rippleEffect {
+  0% { width: 0; height: 0; opacity: 0.5; }
+  100% { width: 300px; height: 300px; opacity: 0; }
+}
+
+/* Թերթիկներ (մնում են որպես դեկոր) */
 .petal{
   position:absolute;top:-8%;display:block;opacity:0;
   border-radius:70% 30% 60% 40% / 50% 60% 40% 50%;
   will-change:transform,opacity;
   animation:fall linear both;
+  z-index: 2;
+  pointer-events: none;
 }
 @keyframes fall{
   0%{transform:translate3d(0,-8vh,0) rotate(0deg);opacity:0}
@@ -79,7 +163,7 @@ section{padding:76px 22px;text-align:center}
   100%{transform:translate3d(var(--sway),115vh,0) rotate(var(--rot));opacity:var(--op,.8)}
 }
 
-/* ================= ԵՐԱԺՇՏՒԹՅԱՆ ԿՈՃԱԿ ================= */
+/* ================= ԵՐԱԺՇՏԹՅԱՆ ԿՈՃԱԿ ================= */
 .music-btn{
   position:fixed;right:18px;bottom:18px;z-index:90;
   width:52px;height:52px;border-radius:50%;border:0;cursor:pointer;
@@ -123,7 +207,7 @@ section{padding:76px 22px;text-align:center}
   font-size:.86rem;line-height:2.15;color:rgba(242,236,225,.85);
 }
 
-/* ================= ՀԱՐՍԱՆՔԻ ՐԸ ================= */
+/* ================= ՀԱՐՍԱՆՔԻ Ր ================= */
 .day{background:var(--cream)}
 .month{font-style:italic;font-size:1.15rem;margin-top:10px}
 .calendar{
@@ -151,7 +235,7 @@ section{padding:76px 22px;text-align:center}
 }
 .cd i{font-style:italic;font-size:.6rem;color:rgba(109,11,34,.7)}
 
-/* ================= ՕՐՎԱ ԾՐԱԳԻ ================= */
+/* ================= ՕՎԱ ԾՐԱԳԻ ================= */
 .program{background:var(--burgundy);color:var(--cream)}
 .program .icon{margin:22px auto 0;display:block}
 .timeline{max-width:420px;margin:40px auto 0;display:flex;flex-direction:column;gap:36px;text-align:left}
@@ -217,7 +301,7 @@ textarea.f-input{border:1px solid rgba(109,11,34,.4);min-height:110px;resize:ver
 .success .icon{width:34px;height:34px;margin-bottom:14px}
 .success p{font-style:italic;font-size:.88rem;line-height:1.9;margin-top:10px}
 
-/* ================= ԳԱԼԵՐԵԱ — ՍԼԱՅԴԵ ================= */
+/* ================= ԳԱԼԵՐԱ — ՍԱՅԵ ================= */
 .gallery{background:#faf6ee;padding-bottom:60px}
 .divider{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:38px}
 .divider .line{width:72px;height:1px;background:rgba(109,11,34,.5)}
@@ -260,7 +344,7 @@ textarea.f-input{border:1px solid rgba(109,11,34,.4);min-height:110px;resize:ver
 .dot.active{background:var(--burgundy);transform:scale(1.3)}
 .g-title{margin-bottom:6px;margin-top:30px}
 
-/* ================= ՖՈՏԵՐ ================= */
+/* ================= ՖՏԵ ================= */
 footer{background:var(--burgundy);padding:64px 20px 46px;text-align:center}
 footer .divider .line{background:rgba(242,236,225,.5)}
 footer .divider{margin-bottom:26px}
@@ -276,13 +360,25 @@ footer .divider{margin-bottom:26px}
   .h-names{font-size:4rem}
   .am-head{font-size:2.3rem}
   .polaroid .ph{height:420px}
+  #intro { padding-bottom: 20vh; }
 }
 </style>
 </head>
 <body>
 
-<!-- ========= ԻՆՏՐՈ ========= -->
-<div id="intro"><div class="intro-heart"></div></div>
+<!-- ========= ԻՆՏՐՈ (ՆՈՐ) ========= -->
+<div id="intro">
+  <!-- Թերթիկները կավելացվեն JS-ով -->
+  
+  <div class="tap-container">
+    <!-- Մատի SVG -->
+    <svg class="finger-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9 11.24V7.5C9 6.12 10.12 5 11.5 5S14 6.12 14 7.5v3.74c1.21-.81 2-2.18 2-3.74C16 5.01 13.99 3 11.5 3S7 5.01 7 7.5c0 1.56.79 2.93 2 3.74zm9.84 4.63l-4.54-2.26c-.17-.07-.35-.11-.54-.11H13v-6c0-.83-.67-1.5-1.5-1.5S10 6.67 10 7.5v10.74l-3.43-.72c-.08-.01-.15-.03-.24-.03-.31 0-.59.13-.79.33l-.79.8 4.94 4.94c.27.27.65.44 1.06.44h6.79c.75 0 1.33-.55 1.44-1.28l.75-5.27c.01-.07.02-.14.02-.2 0-.62-.38-1.16-.91-1.38z"/>
+    </svg>
+    <div class="tap-text">Բացիր</div>
+    <div class="ripple" id="introRipple"></div>
+  </div>
+</div>
 
 <!-- ========= ԵՐԱԺՇՏՈՒԹՅՈՒՆ ========= -->
 <audio id="bgMusic" loop preload="auto"><source src="music.mp3" type="audio/mpeg"></audio>
@@ -296,7 +392,7 @@ footer .divider{margin-bottom:26px}
   <div class="hero-bg" style="background-image:url('hero.jpg')"></div>
   <div class="hero-content">
     <h1 class="h-names">Տիգրան &amp; Լուսինե</h1>
-    <p class="h-invite">ՀՐԱՎԻՐՈՒՄ ԵՆՔ ՁԵԶ ՄԵՐ ՀԱՐՍԱՆԻՔԻՆ</p>
+    <p class="h-invite">ՀՐԱՎԻՐՈՒՄ ԵՆՔ ՁԵԶ ՄՐ ՀԱՐՍԱՆՔԻ</p>
     <p class="h-sirov">Sirov</p>
     <p class="h-date">06 . 09 . 2026</p>
   </div>
@@ -309,10 +405,10 @@ footer .divider{margin-bottom:26px}
   <p>Այս գեղեցիկ օրը մեզ համար առանձնահատուկ է լինելու, և մենք ուզում ենք այն անցկացնել մեր հարազատների ու ընկերների շրջապատում։ Ձեր ներկայությունը մեզ համար ամենամեծ ուրախությունն է։ Հրավիրում ենք ձեզ միանալու մեր հարսանիքին։</p>
 </section>
 
-<!-- ========= ՀԱՐՍԱՆՔԻ ՐԸ ========= -->
+<!-- ========= ՀԱՐՍԱՆՔԻ Ը ========= -->
 <section class="day reveal">
   <h2 class="am-head">հարսանիքի օրը</h2>
-  <p class="month">ՍՊՏԵՄԲԵՐԻ 6, 2026</p>
+  <p class="month">ՍՊՏՄԲԵՐԻ 6, 2026</p>
 
   <div class="calendar">
     <div class="cal-head">
@@ -320,7 +416,7 @@ footer .divider{margin-bottom:26px}
     </div>
     <div class="cal-grid" id="calGrid"></div>
   </div>
-  <p class="date-line">ՍԵՏԵՄԲԵՐԻ 6 — ԿԻՐԱԿԻ</p>
+  <p class="date-line">ՍՏԵԲԵՐԻ 6 — ԿԻՐԱԿԻ</p>
 
   <div class="countdown">
     <div class="cd"><b id="cdD">00</b><i>Օր</i></div>
@@ -354,7 +450,7 @@ footer .divider{margin-bottom:26px}
       <span class="t-time">17:00</span>
       <div class="t-body">
         <h3>Ռեստորան</h3>
-        <p>համեղ ուտեստների, զվարճանքի և շնորհավորանքների ժամանակն է</p>
+        <p>համեղ ուտեստների, զվարանքի և շնորհավորանքների ժամանակն է</p>
       </div>
     </div>
   </div>
@@ -367,7 +463,7 @@ footer .divider{margin-bottom:26px}
   <article class="venue">
     <div class="venue-photo" style="background-image:url('khor-virap.jpg.png')"></div>
     <svg class="icon" viewBox="0 0 24 24"><path d="M12 2v4M10 4h4M8 10l4-4 4 4M6 21V10h12v11M10 21v-4a2 2 0 0 1 4 0v4"/></svg>
-    <h3>Խոր Վիրապ Եկեղեցի</h3>
+    <h3>Խոր իրապ Եկեղեցի</h3>
     <p class="addr">Արարատի մարզ, գ. Խոր Վիրապ</p>
     <a class="btn" target="_blank" href="https://maps.google.com/?q=Khor+Virap">
       <svg class="icon" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
@@ -466,47 +562,71 @@ footer .divider{margin-bottom:26px}
 
 <script>
 /* =====================================================
-   ԿԱՐԱՎՈՐՈՒՄՆԵՐ
+   ԿԱՐԱՎՈՈՒՄՆԵՐ
 ===================================================== */
 const CONFIG = {
   email: "your-email@example.com",   // <-- քո մեյլը այստեղ
   weddingDate: "2026-09-06T12:00:00"
 };
 
-/* ========== ԻՆՏՐՈ — 90 ԹԵՐԹԻԿ, 2 ՎԱՅՐԿՅԱՆ ========== */
+/* ========== ԻՆՏՈ — ՈՐ ԼՈԻԿԱ (TAP TO OPEN) ========== */
 (function(){
   const intro = document.getElementById('intro');
+  const ripple = document.getElementById('introRipple');
+  const audio = document.getElementById('bgMusic');
+  const musicBtn = document.getElementById('musicBtn');
+  
+  // Թերթիկների ստեղծում (դեկորատիվ)
   const colors = [
     '#f3a7c3','#ec7fae','#e56ba0','#f7c6d9','#e88fb4',
     '#fbdce8','#f9b8d0','#eda3c0','#d4608a','#f0c0d8'
   ];
-  const PETAL_COUNT = 90;
+  const PETAL_COUNT = 40; // Քիչ թերթիկներ, որպեսզի չխանգարեն նկարին
 
   for(let i = 0; i < PETAL_COUNT; i++){
     const p = document.createElement('span');
     p.className = 'petal';
-    const s = 6 + Math.random() * 22;
+    const s = 6 + Math.random() * 15;
     p.style.width  = s + 'px';
     p.style.height = s * (0.75 + Math.random() * 0.6) + 'px';
     p.style.left   = Math.random() * 100 + '%';
     p.style.background = colors[i % colors.length];
-    p.style.animationDuration = (1.8 + Math.random() * 1.8) + 's';
-    p.style.animationDelay    = (0.9 + Math.random() * 0.7) + 's';
-    p.style.setProperty('--op',   (0.55 + Math.random() * 0.45));
-    p.style.setProperty('--sway', (Math.random() * 200 - 100) + 'px');
-    p.style.setProperty('--rot',  (Math.random() * 1080 - 540) + 'deg');
+    p.style.animationDuration = (3 + Math.random() * 3) + 's';
+    p.style.animationDelay    = (Math.random() * 5) + 's';
+    p.style.setProperty('--op',   (0.3 + Math.random() * 0.4));
+    p.style.setProperty('--sway', (Math.random() * 100 - 50) + 'px');
+    p.style.setProperty('--rot',  (Math.random() * 360) + 'deg');
     intro.appendChild(p);
   }
 
-  window.addEventListener('load', () => {
-    setTimeout(() => intro.classList.add('hide'), 2000);
-  });
+  // Բացման ֆունկցիա
+  function openInvitation() {
+    // Ripple էֆեկտ
+    ripple.style.animation = 'none';
+    ripple.offsetHeight; /* trigger reflow */
+    ripple.style.animation = 'rippleEffect 0.6s linear';
+    
+    // Փակել ինտրոն
+    setTimeout(() => {
+      intro.classList.add('hide');
+      
+      // Միացնել երաժշտությունը առաջին սեղմումով
+      if(audio.paused) {
+        audio.play().then(() => {
+          musicBtn.classList.remove('muted');
+        }).catch(e => console.log("Audio play failed:", e));
+      }
+    }, 300);
+  }
+
+  // Իրադարձություններ (Touch և Click)
+  intro.addEventListener('click', openInvitation);
+  
 })();
 
-/* ========== ՕՐԱՑՈՒՅՑ — ՍԵՏԵՄԲԵՐ 2026 ========== */
-/* Սեպտեմբեր 1, 2026 = Երեքշաբթի → Կիրակիից offset = 2 */
+/* ========== ՕՐԱՑՈՒՑ — ՍՏԵԲԵՐ 2026 ========== */
 (function(){
-  const FIRST_DAY_OFFSET = 2;   // Կիր=0, Երկ=1, Երք=2
+  const FIRST_DAY_OFFSET = 2;   
   const DAYS_IN_MONTH    = 30;
   const WEDDING_DAY      = 6;
   const grid = document.getElementById('calGrid');
@@ -550,7 +670,7 @@ const CONFIG = {
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 })();
 
-/* ========== ՎԱՅՐԵՐ — ՁԱԽԻՑ ԱՋ ԱՆԻՄԱՑԻԱ ========== */
+/* ========== ՎԱՅՐԵՐ — ԱՆԻԱՑԱ ========== */
 (function(){
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
@@ -563,7 +683,7 @@ const CONFIG = {
   document.querySelectorAll('.venue').forEach(el => io.observe(el));
 })();
 
-/* ========== ՕՐՎԱ ԾՐԱԳԻՐ — ԱՆԻՄԱՑԻԱ ========== */
+/* ========== ՕՐՎԱ ԾՐԱԳԻՐ — ԱՆԻԱՑԱ ========== */
 (function(){
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
@@ -597,7 +717,6 @@ const CONFIG = {
   next.addEventListener('click', () => { goTo(current + 1); resetAuto(); });
   dots.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.i); resetAuto(); }));
 
-  /* swipe (հեռախոս) */
   let startX = 0;
   track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
   track.addEventListener('touchend', e => {
@@ -622,17 +741,14 @@ document.querySelectorAll('.toggle').forEach(t => {
   });
 });
 
-/* ========== ԵՐԱԺՇՏՈՒԹՅՈՒՆ ========== */
+/* ========== ԵՐԱԺՇՏՈՒԹՅՈՒՆ (ԿՈՃԱԿ) ========== */
 (function(){
   const btn   = document.getElementById('musicBtn');
   const audio = document.getElementById('bgMusic');
-  btn.addEventListener('click', () => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation(); // Կանխել ինտրոյի բացումը, եթե սեղմվի
     if(audio.paused){ audio.play().catch(()=>{}); btn.classList.remove('muted'); }
     else            { audio.pause();              btn.classList.add('muted');    }
-  });
-  document.addEventListener('pointerdown', function once(){
-    audio.play().then(() => btn.classList.remove('muted')).catch(()=>{});
-    document.removeEventListener('pointerdown', once);
   });
 })();
 
